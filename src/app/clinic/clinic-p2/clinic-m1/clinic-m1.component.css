@@ -1,0 +1,167 @@
+.menubar{
+    background-color: rgb(255, 238, 0);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}.r{
+    float: right;
+    margin-bottom: 10px;
+}.card-body{
+    padding: 15px;
+}.row{
+    margin-bottom: 15px;
+}.textinline{
+    float: left;
+}.left{
+    margin-left: 15px;
+}.sc{
+    width: 80px;
+    padding-top: 5px;
+    
+}
+#print{
+    display: none;    
+}
+@media print{
+    #no_print{
+        display: none;
+    }
+    #print{
+        display: block;    
+    }
+}
+.button-right{
+    float: right;
+}
+
+/* ------- */
+.manu_top{
+    width: 100px;
+    background-color: #dfdcda;
+    height: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+
+}.txt{
+    color: #ffffff;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+/* .a {
+    border-left-color: rgb(255, 238, 0);
+} */
+.a{
+    text-align: center;
+    margin: 10px 10px 10px 0px;
+    padding: 10px 10px 10px 10px;
+    
+}
+.a:hover,.active{
+    border-left-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
+}.topMenu1{
+    width: auto;
+    text-align: center;
+    color: #ffffff;
+    background-color: #dfdcda;
+    float: left;
+    cursor: pointer;
+    
+/* 
+    width: 100px;
+    background-color: #dfdcda;
+    height: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left; */
+}
+
+
+/* --------------------------- */
+
+
+#navbar{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+}
+#topNav{
+    background-color:#940D94;
+}
+
+.noSpace{
+    padding:0;
+    margin:0;
+    border-spacing:0;
+    
+}
+.noSpace1{
+    padding:5px;
+    margin:0;
+    border-spacing:0;
+    
+}
+.activel{
+    border-left-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
+}
+.topMenu{
+    width:100px;
+    height:110px;
+    text-align: center;
+    color:white;
+    float:left;
+}
+.homeMenu a {
+    border-top-color: rgb(255, 174, 0);
+}
+
+.homeMenu a:hover ,.homeMenuactive{
+    background-color: rgb(255, 174, 0);      
+}
+.clinicMenu a {
+    border-top-color: rgb(255, 238, 0);
+}
+
+.clinicMenu a:hover,.clinicMenuactive {
+    background-color: rgb(255, 238, 0);      
+}
+
+.productMenu a {
+    border-top-color: rgb(0, 255, 0);
+}
+
+.productMenu a:hover,.productMenuactive {
+    background-color: rgb(0, 255, 0);        
+}
+
+.serviceMenu a {
+    border-top-color: rgb(0, 217, 255);
+}
+
+.serviceMenu a:hover,.serviceMenuactive {
+    background-color: rgb(0, 217, 255); 
+}
+
+.settingMenu a {
+    border-top-color: rgb(247, 0, 255);
+}
+
+.settingMenu a:hover,.settingMenuactive {
+    background-color: rgb(247, 0, 255);
+}.img_u{
+    padding: 5px;
+}.navbar-nav .nav-item + .nav-item {
+    margin-left: 0.5rem;
+}.style1{
+    display: '';
+}.style2{
+    display: none;
+}.c {
+    text-align:center;
+}

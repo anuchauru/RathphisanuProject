@@ -1,0 +1,91 @@
+<div class="menubar">
+  <h2 class="h_text"><font color="White">หน้าแรก</font></h2>
+  <h5><font color="White">Medical record > Dashboard</font></h5>
+ </div>
+<!-- Left Column -->
+<!-- <div class="col-md-1 sitebar noSpace" style="width: 6.333%">
+  <ul class="nav col-md-12">
+    <li class="nav-item noSpace col-md-12">
+      <a class="nav-link " [routerLink]="['../home',{outlets:{'c2':['index']}}]"  [routerLinkActive]="['active']">
+        <div>
+          <img src='../assets/images/buildings-big.png'>
+        </div>
+        <div class="txt_manu_l">
+          หน้าแรก
+        </div>
+      </a>
+    </li>
+    <li class="noSpace col-md-12 navItem">
+      <a class="nav-link " [routerLink]="['../home',{outlets:{'c2':['product']}}]" [routerLinkActive]="['active']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div class="txt_manu_l">
+          คลีนิค
+        </div>
+      </a>
+    </li> -->
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+
+<!-- 
+  </ul>
+
+
+</div> 
+<div id="page-wrapper">
+ -->
+
+<div class="page"> 
+  
+ <p>
+          about works! {{name}} and {{company}} xxxxx  
+          <img *ngIf="isShow" [src]='n.urlToImage' [width]='logowidth' >
+          <button (click)='save()'>Save</button>
+</p>
+<ul>
+          <li *ngFor="let staff of staffs">
+                    {{staff}}
+</li>
+</ul>
+
+<table class='table table-bordered'>
+
+          <tr  *ngFor="let drink of drinks; let i of index;" >
+                    <td>{{i}}</td>
+                    <td>{{ drink.name }}</td>
+                    <td>{{ drink.price }}</td>
+          </tr>                  
+</table>
+
+</div>
+<!-- </div> -->
+

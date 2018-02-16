@@ -1,0 +1,71 @@
+<!-- Left Column -->
+<div class="col-md-1 sitebar noSpace" style="width: 6.333%">
+  <ul class="nav col-md-12 " style="width:120px;">
+    <li class="nav-item noSpace col-md-12">
+      <a class="a nav-link " [routerLink]="['../home',{outlets:{'c2':['index']}}]"  [routerLinkActive]="['active']">
+        <div>
+          <img src='./assets/images/buildings-big.png'>
+        </div>
+        <div class="txt_manu_l">
+          หน้าแรก
+        </div>
+      </a>
+    </li>
+    <li class="noSpace col-md-12 navItem">
+      <a class="a nav-link " [routerLink]="['../home',{outlets:{'c2':['product']}}]" [routerLinkActive]="['active']">
+        <div>
+          <img src='./assets/images/star-small.png'>
+        </div>
+        <div class="txt_manu_l">
+          คลีนิค
+        </div>
+      </a>
+    </li>
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='./assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+    <!-- <li class="noSpace col-md-12">
+      <a class="col-md-12" [routerLink]="['/']">
+        <div>
+          <img src='../assets/images/star-small.png'>
+        </div>
+        <div>
+          Home
+        </div>
+      </a>
+    </li> -->
+
+
+  </ul>
+
+
+</div> 
+<div id="page-wrapper">
+    <div class="col-md-12 noSpace" >
+        <!-- Center Column -->
+        <div class="col-md-12 p">
+          <router-outlet name='c2'></router-outlet>
+        </div>
+        <!--/Center Column-->
+    </div>
+</div>
+
+
+<!--/Left Column-->

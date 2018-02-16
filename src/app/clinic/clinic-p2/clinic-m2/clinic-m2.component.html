@@ -1,0 +1,303 @@
+<div class="menubar">
+    <h2 class="h_text"><font color="White">คัดกรอง</font></h2>
+    <h5><font color="White">Medical record > Dashboard</font></h5>
+  </div>
+<div class="page">
+  <div *ngIf='if_text=="table"'>
+  <!-- <button (click)="myinsert()" type="button" class="btn btn-primary r">
+    เพิ่มประวัติผู้ป่วย
+  </button> -->
+<table class="table table-striped table-bordered table-hover" id="myTable" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ชื่อ - นามสกุล</th>
+      <th scope="col">ซักประวัติผู้ป่วย</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of data_ph; let n = index">
+      <th scope="row">{{n+1}}</th>
+      <td>{{i.name_ph}} {{i.lastname_ph}}</td>
+      <td width='1%' >
+          <button class="btn btn-primary" *ngIf='i.status==0' (click)="myPatient(i.id_screening)" type="button">ซักประวัติผู้ป่วย</button>
+          <button class="btn btn-success" *ngIf='i.status!=0' (click)="my_hit(i.id_screening)" type="button">ส่งตรวจแล้ว</button>
+        </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div *ngIf='if_text=="form"' >
+<span [className]="my_Class">
+     <div class="card">
+        <div class="card-header">
+            ข้อมูลส่วนตัว
+        </div>
+        <div class="card-body">
+            <p>นาย {{name_ph}} {{lastname_ph}} <button (click)="my_click();">ข้อมูลเวชระเบียน</button></p>
+            <form #ScreeningForm='ngForm' (ngSubmit)="submit(ScreeningForm.value);">
+                <div class="row">
+                    <div class="text-left">วันที่มารับบริการ</div>
+                    <div class="col-md-2">
+                        <input type="text" [(ngModel)]='u1' type="date"  name="date_now" class="form-control" readonly>
+                    </div>
+                    <div class="text-left">เวลา</div>
+                    <div class="col-md-2">
+                        <input type="text" [(ngModel)]='u2' type="time"  name="time_now" class="form-control" readonly >
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="text-left">ประเภทการมา</div>
+                    <div class="col-md-3">
+                        <select class="form-control" [(ngModel)]='u3' name="id_types" ngModel>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="text-left">แผนก</div>
+                    <div class="col-md-3">
+                        <select class="form-control"[(ngModel)]='u4' name="id_department" ngModel>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="text-left">ห้องตรวจ</div>
+                    <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]='u5' name="id_room" ngModel>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                    </div>
+                </div>
+                <div class="row">     
+                    <div class="text-left">น้ำหนัก</div>
+                    <div class="col-md-1">
+                        <input type="text" name="weight" class="form-control" [(ngModel)]='u6' ngModel >
+                    </div>
+                    <div class="text-left">ส่วนสูง</div>
+                    <div class="col-md-1">
+                        <input type="text" name="height" class="form-control" [(ngModel)]='u7' ngModel >
+                    </div>
+                    <div class="text-left">ความดันโลหิต</div>
+                    <div class="col-md-1">
+                        <input type="text" name="blood_pressure_top" class="form-control" [(ngModel)]='u8' ngModel >
+                    </div>
+                    <div class="text-left">/</div>
+                    <div class="col-md-1">
+                        <input type="text" name="blood_pressure_down" class="form-control" [(ngModel)]='u9' ngModel >
+                    </div>
+                    <div class="text-left">อุณหภูมิ</div>
+                    <div class="col-md-3">
+                        <input type="text" name="heat" class="form-control" [(ngModel)]='u10' ngModel >
+                    </div>
+                </div>
+                <div class="row">      
+                    <div class="text-left">HR</div>
+                    <div class="col-md-1">
+                        <input type="text" name="HR" class="form-control" [(ngModel)]='u11' ngModel >
+                    </div>
+                    <div class="text-left">Pulse</div>
+                    <div class="col-md-1">
+                        <input type="text" name="Pulse" class="form-control" [(ngModel)]='u12' ngModel >
+                    </div>
+                    <div class="text-left">RR</div>
+                    <div class="col-md-1">
+                        <input type="text" name="RR" class="form-control" [(ngModel)]='u13' ngModel >
+                    </div>
+                    <div class="text-left">รอบเอว</div>
+                    <div class="col-md-1">
+                        <input type="text" name="waistline" class="form-control" [(ngModel)]='u14' ngModel >
+                    </div>
+                
+                </div>
+                <div class="row">   
+                    <div class="text-left">การสูบบุหรี่</div>
+                    <div class="col-md-3">
+                        <input type="text" name="smoking" class="form-control" [(ngModel)]='u15' ngModel >
+                    </div>
+                    <div class="text-left">การดื่มสุรา</div>
+                    <div class="col-md-3">
+                        <input type="text" name="drinking" class="form-control" [(ngModel)]='u16' ngModel >
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-2">
+                        ความดันโลหิตค่าบน
+                         <input class="form-control" #u1='ngModel'  ngModel   type="text" name="t1">
+                    </div>
+                    <div class="col-md-2">
+                        ความดันโลหิตค่าล่าง <input class="form-control" #u2='ngModel'  ngModel  type="text" name="t2">
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col-md-1">
+                        น้ำหนัก
+                        <input class="form-control" #u3='ngModel'  ngModel  type="text" name="t3">
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        อาการ
+                        <textarea class="form-control" #u4='ngModel'  ngModel  rows="5" name="t4"></textarea>
+                    </div>
+                </div> -->
+              <br>
+                <div class="row">
+                    <div class="col-md-12">
+            <button class="btn btn-primary butom" type="submit">บันทึก</button><button class="btn btn-light butom" type="button" (click)="myCancel()">ยกเลิก</button>
+                    </div>
+                </div>    
+            <input type="text" [(ngModel)]='id_screening'   name="id_screening" >
+            <input type="text" [(ngModel)]='mm'   name="mm" >
+            <input type="text" [(ngModel)]='status'   name="status" >
+            </form>
+
+        </div>
+      </div> 
+
+</span>
+<span [className]="my_Class1" > 
+    <div class="card">
+        <div class="card-header">
+          ข้อมูลส่วนตัว
+        </div>
+        <div class="card-body">
+      <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+        <div class="row">
+            <div class="col-md-2">
+                <label for="n_ph">คำนำหน้า</label>
+                <select class="form-control" [(ngModel)]='PRENAMEID'  name="PRENAME_ID" id="n_ph" disabled >
+                  <option selected="selected" value="">คุณ</option>
+                  <option *ngFor="let i of data_pername;" value="{{i.PRENAME_ID}}">{{i.PRENAME}}</option>
+                </select>
+              </div>
+          <div class="col-md-5">
+            <label for="name_ph">ชื่อ</label>
+            <input [(ngModel)]='name_ph'  ngModel  type="text" name="name_ph"  class="form-control"  id="name_ph" readonly >
+          </div>
+          <div class="col-md-5">
+            <label for="lastname_ph">นามสกุล</label>
+            <input [(ngModel)]='lastname_ph' ngModel type="text" name="lastname_ph" class="form-control" id="lastname_ph" readonly >
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="birthday">วันเกิด</label>
+                <input type="date"  [(ngModel)]='birthday' ngModel  name="birthday" class="form-control" id="birthday" readonly="">
+              </div>
+              <div class="col-md-4">
+                  <label for="time_birthday">เวลาเกิด</label>
+                  <input type="time" [(ngModel)]='time_birthday' ngModel  name="time_birthday" class="form-control" id="time_birthday" readonly="">
+                </div>
+                <div class="col-md-4">
+                    <label for="sex_ph">เพศ</label>
+                    <select class="form-control" [(ngModel)]='sex_ph' ngModel  name="sex_ph" id="sex_ph" readonly="" disabled>
+                      <option value="m">ชาย</option>
+                      <option value="f">หญิง</option>
+                    </select>
+                  </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label for="no">บ้านเลขที่</label>
+                <input type="text" class="form-control" [(ngModel)]='no' ngModel  name="no" id="no" readonly="" >
+              </div>
+              <div class="col-md-1">
+                  <label for="moo">หมู่</label>
+                  <input type="text" class="form-control" [(ngModel)]='moo' ngModel  name="moo" id="moo" readonly="">
+                </div>
+                <div class="col-md-6">
+                    <label for="road">ถนน</label>
+                    <input type="text" class="form-control" [(ngModel)]='road' ngModel  name="road" id="road" readonly="" >
+                  </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+              <label for="PROVINCE_ID">จังหวัด</label>
+              <!-- <select class="form-control" [(ngModel)]="PROVINCEID" name="PROVINCE_ID" id="PROVINCE_ID" (ngModelChange)="my_amphures(PROVINCEID)" >
+                <option value="">กรุณาเลือก</option>
+                <option *ngFor="let i of data_province;" value="{{i.PROVINCE_ID}}">{{i.PROVINCE_NAME}}</option>
+              </select> -->
+              <select class="form-control" [(ngModel)]="PROVINCE_ID" name="PROVINCE_ID" id="PROVINCE_ID" (change)="my_amphures(PROVINCE_ID)" readonly="" disabled >
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_province;" value="{{i.PROVINCE_ID}}">{{i.PROVINCE_NAME}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="AMPHUR_ID">อำเภอ</label>
+                <select class="form-control" [(ngModel)]="AMPHUR_ID" name="AMPHUR_ID" id="AMPHUR_ID" (change)="my_district(AMPHUR_ID)" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_getamphures;" value="{{i.AMPHUR_ID}}">{{i.AMPHUR_NAME}}</option>
+                  </select>
+              </div>
+              <div class="col-md-4">
+                  <label for="DISTRICT_ID">ตำบล</label>
+                  <select class="form-control" [(ngModel)]="DISTRICT_ID" name="DISTRICT_ID" id="DISTRICT_ID" readonly="" disabled>
+                      <option value="">กรุณาเลือก</option>
+                      <option *ngFor="let i of data_district;" value="{{i.DISTRICT_ID}}">{{i.DISTRICT_NAME}}</option>
+                    </select>
+                </div>
+      </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="OCCUPATION_ID">อาชีพ</label>
+                <select class="form-control" [(ngModel)]='OCCUPATION_ID' ngModel  name="OCCUPATION_ID"  id="OCCUPATION_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_occupation;" value="{{i.OCCUPATION_ID}}">{{i.OCCUPATION_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                  <label for="tel">โทรศัพท์</label>
+                  <input [(ngModel)]='tel_ph' ngModel  name="tel_ph"  class="form-control"  id="tel" readonly="" >
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="ETHNICITYE_ID">เชื้อชาติ</label>
+                <select class="form-control" [(ngModel)]='ETHNICITYE_ID' ngModel  name="ETHNICITYE_ID" id="ETHNICITYE_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_ethnicity;" value="{{i.ETHNICITYE_ID}}">{{i.ETHNICITY_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                  <label for="NATIONALITY_ID">สัญชาติ</label>
+                  <select class="form-control" [(ngModel)]='NATIONALITY_ID' ngModel  name="NATIONALITY_ID"  id="NATIONALITY_ID" readonly="" disabled>
+                    <option value="">กรุณาเลือก</option>
+                <option *ngFor="let i of data_tb_nationality;" value="{{i.NATIONALITY_ID}}">{{i.NATIONALITY_NAME}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="RELIGION_ID">ศาสนา</label>
+                    <select class="form-control" [(ngModel)]='RELIGION_ID' ngModel  name="RELIGION_ID" id="RELIGION_ID" readonly="" disabled>
+                      <option value="">กรุณาเลือก</option>
+                      <option *ngFor="let i of data_tb_religion;" value="{{i.RELIGION_ID}}">{{i.RELIGION_NAME}}</option>
+                    </select>
+                  </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table>
+              <tr *ngFor="let i of data_allergys;" >
+                <td>{{'- '+i.n_medicine}}</td>
+              </tr>
+            </table>
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <button type="button" class="btn btn-primary"(click)="my_cancel()">ย้อนกลับ</button>
+            </div>
+        </div>
+      </form>
+      
+      
+        </div>
+        </div>
+        </span> 
+</div>
+
+</div>

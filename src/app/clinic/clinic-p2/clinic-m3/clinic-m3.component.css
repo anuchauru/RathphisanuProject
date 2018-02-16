@@ -1,0 +1,75 @@
+.menubar{
+    background-color: rgb(255, 238, 0);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}.card-body{
+    padding: 15px;
+}.row{
+    margin-bottom: 15px;
+}.textinline{
+    float: left;
+}.left{
+    margin-left: 15px;
+}
+.button-right{
+    float: right;
+}
+.a{
+    text-align: center;
+    margin: 10px 10px 10px 0px;
+    padding: 10px 10px 10px 10px;
+    
+}
+.a:hover,.active{
+    border-left-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
+}.topMenu1{
+    width: auto;
+    text-align: center;
+    color: #ffffff;
+    background-color: #dfdcda;
+    float: left;
+    cursor: pointer;
+    
+}
+
+#navbar{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+}
+
+.noSpace1{
+    padding:5px;
+    margin:0;
+    border-spacing:0;
+    
+}
+.activel{
+    border-left-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
+}
+.homeMenu a {
+    border-top-color: rgb(255, 174, 0);
+}
+
+.homeMenu a:hover ,.homeMenuactive{
+    background-color: rgb(255, 174, 0);      
+}
+.clinicMenu a {
+    border-top-color: rgb(255, 238, 0);
+}
+
+.clinicMenu a:hover,.clinicMenuactive {
+    background-color: rgb(255, 238, 0);      
+}
+
+.navbar-nav .nav-item + .nav-item {
+    margin-left: 0.5rem;
+}.show{
+    display: '';
+}.hide{
+    display: none;
+}

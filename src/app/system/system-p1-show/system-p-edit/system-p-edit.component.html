@@ -1,0 +1,35 @@
+<br>
+<br>
+<!-- <pre>{{editform.value | json}}</pre>
+<pre>{{editform.valid}}</pre>   -->
+<div class="card">
+  <div class="card-header">
+    แก้ไขข้อมูลส่วนตัว
+  </div>
+  <div class="card-body">
+<form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="name">ชื่อ</label>
+      <input [(ngModel)]='postdata.m_name'  ngModel  class="form-control"  type="text" name="m_name" id="name" >
+    </div>
+    <div class="col-md-6">
+      <label for="lastname">นามสกุล</label>
+      <input [(ngModel)]='postdata.m_lastname' ngModel type="text" name="m_lastname" class="form-control" id="lastname" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary">บันทึก</button>
+      </div>
+  </div>
+
+  <input [(ngModel)]='postdata.m_acc' ngModel type="hidden" name="m_acc">
+  <input [(ngModel)]='postdata.m_id' ngModel type="hidden" name="m_id">
+</form>
+
+
+  </div>
+</div>
+
+

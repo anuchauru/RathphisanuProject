@@ -1,0 +1,17 @@
+
+<h1>Course : {{title}}</h1>
+<ul class='list-group'>
+  <li *ngFor='let p of product' class='list-group-item'>
+    {{ p.ch_title }}
+    <span class='pull-xs-right tag tag-primary'>
+      {{p.ch_view}}
+    </span>
+    <br>
+    <small>
+      <a href="http://www.youtube.com/watch?v={{p.ch_url}}" target="_blank">Watch Online</a>
+    </small>
+  </li>
+</ul>
+<button class='btn btn-primary' (click)="goBack()">Back</button>
+<!-- Display Data from JSON --> 
+<!-- {{ product | json }} -->

@@ -1,0 +1,12 @@
+<!-- List-Group Panel -->
+<div class="card">
+    <div class="card-header p-b-0">
+        <h5 class="card-title">
+            <i class="fa fa-random" aria-hidden="true"></i>Course</h5>
+    </div>
+    <div class="list-group list-group-flush">
+        <button *ngFor='let p of product' class="list-group-item list-group-item-action" (click)='openCourse(p)'>
+            {{p.c_title}}
+        </button>
+    </div>
+</div>

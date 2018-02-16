@@ -1,0 +1,98 @@
+<nav id="topNav" class="navbar navbar-full navbar-static-top navbar-dark noSpace">
+
+    <div class="collapse navbar-toggleable-sm " id="navbar"style="width:100%;">
+        <button class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#navbar">
+            &#9776;
+        </button>
+        <a class="navbar-brand" href="#">
+            <img [src]='logo'>
+        </a>
+        <ul class="nav navbar-nav pull-xs-right noSpace">
+            <li class="nav-item homeMenu noSpace" style="vertical-align:top;">
+                <a class=" topMenu noSpace" [routerLink]="['./home']" [routerLinkActive]="['homeMenuactive']">
+                    <div>
+                        <img src='./assets/images/star-small.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        หน้าแรก
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item clinicMenu noSpace">
+                <a class="topMenu noSpace" [routerLink]="['./clinic']" [routerLinkActive]="['clinicMenuactive']" >
+                    <div>
+                        <img src='./assets/images/buildings-big.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        คลีนิค
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item productMenu noSpace">
+
+                <a class="topMenu noSpace" [routerLink]="['./stock']" [routerLinkActive]="['productMenuactive']">
+                    <div>
+                        <img src='./assets/images/box-big.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        คลังยา
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item serviceMenu noSpace">
+                <a class="topMenu noSpace" [routerLink]="['./money']" [routerLinkActive]="['serviceMenuactive']">
+                    <div>
+                        <img src='./assets/images/dollar-small.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        การเงิน
+                    </div>
+
+                </a>
+            </li>
+            <li class="nav-item settingMenu noSpace">
+                <a class="topMenu noSpace" [routerLink]="['./system']" [routerLinkActive]="['settingMenuactive']">
+                    <div>
+                        <img src='./assets/images/panel-big.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        ผู้ดูแลระบบ
+                    </div>
+
+                </a>
+            </li>
+            <li class="nav-item settingMenu noSpace">
+                <a class="topMenu noSpace" (click)="logout()" >
+                    <div>
+                        <img src='./assets/images/panel-big.png'>
+                    </div>
+                    <div class="txt_manu_l">
+                        ออกจากระบบ
+                    </div>
+
+                </a>
+            </li>
+            <!-- <li class="nav-item noSpace ">
+                <div>
+                    <div>
+                        <a class="nav-link rightbtn noSpace" [routerLink]="['/']">
+                            <div>
+                                <img src='../assets/images/star-small.png' width=30px>
+                            </div>
+
+                        </a>
+                    </div>
+                    <div>
+                        <a class="nav-link rightbtn noSpace" [routerLink]="['/']">
+                            <div>
+                                <img src='../assets/images/star-small.png' width=30px>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </li> -->
+
+        </ul>
+    </div>
+</nav>

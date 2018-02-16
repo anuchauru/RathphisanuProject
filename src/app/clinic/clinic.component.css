@@ -1,0 +1,14 @@
+li .a {
+    border-left-color: rgb(255, 238, 0);
+}
+
+li .a:hover,.active {
+    border-left-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
+}#page-wrapper{
+    min-height: 990px;
+}@media print{
+    #hide{
+        display: none;
+    }
+}

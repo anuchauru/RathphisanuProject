@@ -1,0 +1,71 @@
+<div class="collapse navbar-toggleable-sm " id="navbar"style="width:100%;">
+            <ul  class="nav navbar-nav noSpace">
+                <li  class="nav-item homeMenu noSpace" style="vertical-align:top;">
+                    <a class=" topMenu noSpace"[routerLink]="[{outlets:{'c3':['t1']}}]" [routerLinkActive]="['clinicMenuactive']">
+                        <div class="img_u">
+                            <img src='./assets/images/star-small.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            ประวัติผู้ป่วย
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item clinicMenu noSpace">
+                    <a class="topMenu noSpace" [routerLink]="[{outlets:{'c3':['t2']}}]" [routerLinkActive]="['clinicMenuactive']" >
+                        <div class="img_u">
+                            <img src='./assets/images/buildings-big.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            คัดกรอง
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item productMenu noSpace">
+    
+                    <a class="topMenu noSpace" [routerLink]="[{outlets:{'c3':['t3']}}]" [routerLinkActive]="['clinicMenuactive']">
+                        <div class="img_u">
+                            <img src='./assets/images/box-big.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            ส่งตรวจ
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item serviceMenu noSpace">
+                    <a class="topMenu noSpace">
+                        <div class="img_u">
+                            <img src='./assets/images/dollar-small.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            ค้นหา
+                        </div>
+    
+                    </a>
+                </li>
+                <li class="nav-item settingMenu noSpace">
+                    <a class="topMenu noSpace">
+                        <div class="img_u">
+                            <img src='./assets/images/panel-big.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            รับคำแนะนำ
+                        </div>
+    
+                    </a>
+                </li>
+                <li class="nav-item settingMenu noSpace">
+                    <a class="topMenu noSpace">
+                        <div class="img_u">
+                            <img src='./assets/images/panel-big.png'>
+                        </div>
+                        <div class="txt_manu_l">
+                            นัดตรวจ
+                        </div>
+    
+                    </a>
+                </li>
+
+    
+            </ul>
+        </div> 
+  <router-outlet name='c3'></router-outlet>

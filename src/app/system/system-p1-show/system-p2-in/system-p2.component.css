@@ -1,0 +1,15 @@
+.card-body{
+    padding: 15px;
+}
+.row{
+    margin-bottom: 15px;
+}.radio{
+    margin-left: -20px;
+}.down{
+    position: relative;
+    top: 35px;
+}.textinline{
+    float: left;
+}.left{
+    margin-left: 15px;
+}

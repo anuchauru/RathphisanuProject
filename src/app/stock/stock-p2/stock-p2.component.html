@@ -1,0 +1,124 @@
+<div class="menubar">
+  <h2 class="h_text">
+    <font color="White">รับยา</font>
+  </h2>
+  <h5>
+    <font color="White">คลังยา > รับยา</font>
+  </h5>
+</div>
+
+<div class="page">
+  <span [className]="my_Class_1">
+    <div class="card">
+      <div class="card-header">
+        ใบรับยาและเวชภัณฑ์
+      </div>
+      <div class="card-body">
+        <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="n_ph">เลขที่รับ</label>
+              <select class="form-control" [(ngModel)]='PRENAMEID' name="PRENAME_ID" id="n_ph">
+                <option selected="selected" value="">คุณ</option>
+                <option *ngFor="let i of data_pername;" value="{{i.PRENAME_ID}}">{{i.PRENAME}}</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <label for="name_ph">เลขที่ใบรับ</label>
+              <input [(ngModel)]='name_ph' ngModel type="text" name="name_ph" class="form-control" id="name_ph">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="birthday">วันที่รับ</label>
+              <input type="date" [(ngModel)]='birthday' ngModel name="birthday" class="form-control" id="birthday">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" (click)="my_add()">+ รายละเอียดยาและเวชภัณฑ์</button>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
+              </div>
+            </div>
+        </form>
+
+
+      </div>
+    </div>
+  </span>
+  <span [className]="my_Class_2">
+    <div class="card">
+      <div class="card-header">
+        รายละเอียดยาและเวชภัณฑ์
+      </div>
+      <div class="card-body">
+        <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+          <div class="row">
+            <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
+            <div class="col-md-2">
+              <select class="form-control" [(ngModel)]='PRENAMEID' name="PRENAME_ID" id="n_ph">
+                <option selected="selected" value="">คุณ</option>
+                <option *ngFor="let i of data_pername;" value="{{i.PRENAME_ID}}">{{i.PRENAME}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button (click)="my_add_new()" type="button" class="btn btn-primary r">
+                เพิ่มข้อมูลยา
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-left">จำนวน</div>
+            <div class="col-md-4">
+              <input type="number" [(ngModel)]='birthday' ngModel name="birthday" class="form-control" id="birthday">
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
+                <button (click)="my_cancen_add()" type="button" class="btn btn-primary">ยกเลิก</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </span>
+  <span [className]="my_Class_3">
+    <div class="card">
+      <div class="card-header">
+        รายละเอียดยาและเวชภัณฑ์
+      </div>
+      <div class="card-body">
+        <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+          <div class="row">
+              <div class="text-left">รหัสยา</div>
+              <div class="col-md-2">
+                <input type="text" name="" value="" class="form-control" >
+              </div>
+            <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
+            <div class="col-md-2">
+              <input type="text" name="" value="" class="form-control" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-left">หน่วย</div>
+            <div class="col-md-4">
+              <input type="number" [(ngModel)]='birthday' ngModel name="birthday" class="form-control" id="birthday">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
+              <button (click)="my_cancen_add_new()" type="button" class="btn btn-primary">ยกเลิก</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </span>
+
+</div>

@@ -1,0 +1,140 @@
+<div class="menubar">
+ <h2 class="h_text"><font color="White">ข้อมูลผู้ใช้</font></h2>
+ <h5><font color="White">ผู้ดูแลระบบ > ผู้ใช้</font></h5>
+</div>
+
+<div class="page">
+<!-- Button trigger modal -->
+<!-- <a class="a nav-link r" [routerLink]="['/system',{outlets:{'c2':['s2']}}]">
+  <button type="button" class="btn btn-primary">
+    เพิ่มข้อมูลผู้ใช้
+  </button>
+  </a> -->
+<div *ngIf='if_text=="table"'>
+    <button (click)="myinsert()" type="button" class="btn btn-primary r">
+      เพิ่มข้อมูลผู้ใช้
+    </button>
+
+<table class="table table-striped table-bordered table-hover" id="myTable" >
+  <thead>
+    <tr  >
+      <th scope="col">#</th>
+      <th scope="col">ชื่อ - นามสกุล</th>
+      <th scope="col">ที่อยู่</th>
+      <th>แก้ไข</th>
+      <th>ลบ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of member; let n = index">
+      <th scope="row">{{n+1}}</th>
+      <td>{{i.m_name}} {{i.m_lastname}}</td>
+      <td>{{i.m_acc}}</td>
+      <td><button (click)="myclick(i.m_id)" >แก้ไข</button></td>
+      <td><button (click)="mydelete(i.m_id)" >ลบ</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div *ngIf='if_text=="insert"'>
+    <div class="card">
+      <div class="card-header">
+        เพิ่มข้อมูลส่วนตัว
+      </div>
+      <div class="card-body">
+    <form #loginForm='ngForm' (ngSubmit)="submit(loginForm.value);">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="name">ชื่อ</label>
+          <input #user='ngModel'  ngModel  type="text" name="m_name"  class="form-control"  id="name" >
+        </div>
+        <div class="col-md-6">
+          <label for="lastname">นามสกุล</label>
+          <input #pass="ngModel" ngModel type="text" name="m_lastname" class="form-control" id="lastname" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="add">ที่อยู่</label>
+          <textarea #add="ngModel" ngModel  name="add" class="form-control" id="add" rows="5" ></textarea>
+        </div>
+      </div>
+      <div class="row">
+          <label for="tel" class="textinline left">เบอร์โทร</label>
+        <div class="col-md-3">
+          <input #tel='ngModel'  ngModel  type="text" name="tel"  class="form-control"  id="tel" >
+        </div>
+        <div class="col-md-2">
+             <label for="sex1">เพศ</label>
+              <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input #sex1="ngModel" ngModel class="form-check-input" type="radio" name="sex" id="inlineRadio1" value="m"> ชาย
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input #sex2="ngModel" ngModel class="form-check-input" type="radio" name="sex" id="inlineRadio2" value="f"> หญิง
+                  </label>
+                </div>    
+        </div>
+        <label for="age" class="textinline">อายุ</label>
+        <div class="col-md-1">
+          <input #age='ngModel'  ngModel  type="text" name="age"  class="textinline form-control"  id="age" >
+        </div>
+        <div class="textinline">ปี</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">บันทึก</button>
+          </div>
+      </div>
+      <input [(ngModel)]='m_acc_txt' ngModel type="hidden" name="m_acc">
+      <input #u4="ngModel" ngModel type="hidden" name="mm_insert">
+    </form>
+    
+    
+      </div>
+    </div>
+    
+</div>
+
+<div *ngIf='if_text=="edit"'> 
+<!-- <pre>{{editform.value | json}}</pre>
+<pre>{{editform.valid}}</pre>   -->
+<div class="card">
+    <div class="card-header">
+      แก้ไขข้อมูลส่วนตัว
+    </div>
+    <div class="card-body">
+  <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="name">ชื่อ</label>
+        <input [(ngModel)]='postdata.m_name'  ngModel  class="form-control"  type="text" name="m_name" id="name" >
+      </div>
+      <div class="col-md-6">
+        <label for="lastname">นามสกุล</label>
+        <input [(ngModel)]='postdata.m_lastname' ngModel type="text" name="m_lastname" class="form-control" id="lastname" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">บันทึก</button>
+        </div>
+    </div>
+  
+    <input [(ngModel)]='postdata.m_acc' ngModel type="hidden" name="m_acc">
+    <input [(ngModel)]='postdata.m_id' ngModel type="hidden" name="m_id">
+  </form>
+  
+  
+    </div>
+  </div>
+</div>
+
+</div> 
+
+
+
+

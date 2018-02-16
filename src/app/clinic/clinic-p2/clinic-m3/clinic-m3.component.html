@@ -1,0 +1,313 @@
+<span *ngIf='if_text=="table"'>
+    <div class="menubar">
+        <h2 class="h_text">
+            <font color="White">ส่งตรวจ</font>
+        </h2>
+        <h5>
+            <font color="White">Medical record > Dashboard</font>
+        </h5>
+    </div>
+    <div class="page">
+        <!-- <button (click)="myinsert()" type="button" class="btn btn-primary r">
+      เพิ่มประวัติผู้ป่วย
+    </button> -->
+        <table class="table table-striped table-bordered table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ชื่อ - นามสกุล</th>
+                    <th scope="col">ข้อมูลผู้ป่วย</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of data_ph; let n = index">
+                    <th scope="row">{{n+1}}</th>
+                    <td>{{i.name_ph}} {{i.lastname_ph}}</td>
+                    <td>
+                        <button (click)="myPatient(i.id_screening)" type="button">ข้อมูลผู้ป่วย</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</span>
+
+<span *ngIf='if_text=="form"'>
+    <div class="menubar">
+        <h2 class="h_text">
+            <font color="White">ประวัติผู้ป่วย</font>
+        </h2>
+    </div>
+    <div class="page">
+        <span [className]='page1'>
+            <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item homeMenu" style="vertical-align:top;">
+                        <a class=" topMenu1 noSpace1 activel" (click)="my_page1()">
+                            <div class="txt_manu_l">
+                                ข้อมูลผู้ป่วย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu">
+                        <a class="topMenu1 noSpace1" (click)="my_page2()">
+                            <div class="txt_manu_l">
+                                การวินิจฉัย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page3()">
+                            <div class="txt_manu_l">
+                                Medication
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page4()">
+                            <div class="txt_manu_l">
+                                หัตถการ
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page5()">
+                            <div class="txt_manu_l">
+                                การนัดหมาย
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    ข้อมูลส่วนตัว
+                </div>
+                <div class="card-body">
+                    <p>นาย {{postdata.name_ph}} {{postdata.lastname_ph}}</p>
+                    <form #ScreeningForm='ngForm' (ngSubmit)="submit(ScreeningForm.value);">
+                        <div class="row">
+                            <div class="col-md-2">
+                                ความดันโลหิตค่าบน {{postdata.blood_pressure_top}}
+
+                            </div>
+                            <div class="col-md-2">
+                                ความดันโลหิตค่าล่าง {{postdata.blood_pressure_down}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                น้ำหนัก {{postdata.weight}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                อาการ {{postdata.patient_symptoms}}
+                            </div>
+                        </div>
+                        <br>
+                        <!-- <div class="row">
+                                  <div class="col-md-12">
+                          <button class="btn btn-primary butom" type="submit">บันทึก</button><button class="btn btn-light butom" type="button" (click)="myCancel()">ยกเลิก</button>
+                                  </div>
+                              </div>     -->
+                        <input type="hidden" [(ngModel)]='postdata.id_screening' ngModel name="t5">
+                    </form>
+
+                </div>
+            </div>
+        </span>
+        <span [className]='page2'>
+            <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item homeMenu" style="vertical-align:top;">
+                        <a class=" topMenu1 noSpace1" (click)="my_page1()">
+                            <div class="txt_manu_l">
+                                ข้อมูลผู้ป่วย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu">
+                        <a class="topMenu1 noSpace1 activel" (click)="my_page2()">
+                            <div class="txt_manu_l">
+                                การวินิจฉัย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page3()">
+                            <div class="txt_manu_l">
+                                Medication
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page4()">
+                            <div class="txt_manu_l">
+                                หัตถการ
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page5()">
+                            <div class="txt_manu_l">
+                                การนัดหมาย
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    การวินิจฉัย
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </span>
+        <span [className]='page3'>
+            <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item homeMenu" style="vertical-align:top;">
+                        <a class=" topMenu1 noSpace1" (click)="my_page1()">
+                            <div class="txt_manu_l">
+                                ข้อมูลผู้ป่วย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu">
+                        <a class="topMenu1 noSpace1" (click)="my_page2()">
+                            <div class="txt_manu_l">
+                                การวินิจฉัย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1 activel" (click)="my_page3()">
+                            <div class="txt_manu_l">
+                                Medication
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page4()">
+                            <div class="txt_manu_l">
+                                หัตถการ
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page5()">
+                            <div class="txt_manu_l">
+                                การนัดหมาย
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Medication
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </span>
+        <span [className]='page4'>
+            <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item homeMenu" style="vertical-align:top;">
+                        <a class=" topMenu1 noSpace1" (click)="my_page1()">
+                            <div class="txt_manu_l">
+                                ข้อมูลผู้ป่วย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu">
+                        <a class="topMenu1 noSpace1" (click)="my_page2()">
+                            <div class="txt_manu_l">
+                                การวินิจฉัย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page3()">
+                            <div class="txt_manu_l">
+                                Medication
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1 activel" (click)="my_page4()">
+                            <div class="txt_manu_l">
+                                หัตถการ
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page5()">
+                            <div class="txt_manu_l">
+                                การนัดหมาย
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    หัตถการ
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </span>
+        <span [className]='page5'>
+            <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item homeMenu" style="vertical-align:top;">
+                        <a class=" topMenu1 noSpace1" (click)="my_page1()">
+                            <div class="txt_manu_l">
+                                ข้อมูลผู้ป่วย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu">
+                        <a class="topMenu1 noSpace1" (click)="my_page2()">
+                            <div class="txt_manu_l">
+                                การวินิจฉัย
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page3()">
+                            <div class="txt_manu_l">
+                                Medication
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1" (click)="my_page4()">
+                            <div class="txt_manu_l">
+                                หัตถการ
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item clinicMenu1">
+                        <a class="topMenu1 noSpace1 activel" (click)="my_page5()">
+                            <div class="txt_manu_l">
+                                การนัดหมาย
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    การนัดหมาย
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </span>
+    </div>
+</span>

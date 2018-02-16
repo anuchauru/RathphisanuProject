@@ -1,0 +1,52 @@
+<div *ngIf="if_text=='login'" >
+<div class="container magin-down">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div align="center">
+                    <img src='./assets/images/logo-2x.png' width="75%">
+                </div>
+                <br>
+                      <div class="card-body">
+                    <form #loginForm='ngForm' (ngSubmit)="submit(loginForm.value);">
+                      <div class="row">
+                        <div class="col-md-12 div-input">
+                          <label for="name" class="font" >Username</label>
+                          <input #user='ngModel'  ngModel  type="text" name="user"  class="form-control input-login"  id="name" >
+                          <br>
+                        </div>
+                        <div class="col-md-12 div-input">
+                          <label for="lastname" class="font">Password</label>
+                          <input #pass="ngModel" ngModel type="password" name="pass" class="form-control input-login" id="lastname" >
+                          <br>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-12" align="center">
+                          <button type="submit" class="btn btn-primary LOGIN">LOGIN</button>
+                          </div>
+                      </div>
+                      <input [(ngModel)]='m_acc_txt' ngModel type="hidden" name="m_acc">
+                      <input #u4="ngModel" ngModel type="hidden" name="mm_insert">
+                    </form>
+                    
+                    
+                      </div>
+                    
+            </div>
+        </div>
+    </div>
+  </div> 
+<div *ngIf="if_text=='home'">     
+<div id="wrapper">
+	<div class="container-fluid noSpace wrapper">
+    <div class="col-md-12 noSpace">
+        <app-header></app-header>
+    </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+</div>
+
+
+<!--/container-fluid-->

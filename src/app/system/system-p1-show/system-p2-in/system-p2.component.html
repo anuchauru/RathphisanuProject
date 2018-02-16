@@ -1,0 +1,63 @@
+<br>
+<!-- <pre>{{loginForm.value | json}}</pre>
+<pre>{{loginForm.valid}}</pre>   -->
+<div class="page">
+<div class="card">
+  <div class="card-header">
+    เพิ่มข้อมูลส่วนตัว
+  </div>
+  <div class="card-body">
+<form #loginForm='ngForm' (ngSubmit)="submit(loginForm.value);">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="name">ชื่อ</label>
+      <input #user='ngModel'  ngModel  type="text" name="m_name"  class="form-control"  id="name" >
+    </div>
+    <div class="col-md-6">
+      <label for="lastname">นามสกุล</label>
+      <input #pass="ngModel" ngModel type="text" name="m_lastname" class="form-control" id="lastname" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label for="add">ที่อยู่</label>
+      <textarea #add="ngModel" ngModel  name="add" class="form-control" id="add" rows="5" ></textarea>
+    </div>
+  </div>
+  <div class="row">
+      <label for="tel" class="textinline left">เบอร์โทร</label>
+    <div class="col-md-3">
+      <input #tel='ngModel'  ngModel  type="text" name="tel"  class="form-control"  id="tel" >
+    </div>
+    <div class="col-md-2">
+         <label for="sex1">เพศ</label>
+          <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input #sex1="ngModel" ngModel class="form-check-input" type="radio" name="sex" id="inlineRadio1" value="m"> ชาย
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input #sex2="ngModel" ngModel class="form-check-input" type="radio" name="sex" id="inlineRadio2" value="f"> หญิง
+              </label>
+            </div>    
+    </div>
+    <label for="age" class="textinline">อายุ</label>
+    <div class="col-md-1">
+      <input #age='ngModel'  ngModel  type="text" name="age"  class="textinline form-control"  id="age" >
+    </div>
+    <div class="textinline">ปี</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary">บันทึก</button>
+      </div>
+  </div>
+  <input [(ngModel)]='m_acc_txt' ngModel type="hidden" name="m_acc">
+  <input #u4="ngModel" ngModel type="hidden" name="mm_insert">
+</form>
+
+
+  </div>
+</div>
+</div>
