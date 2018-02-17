@@ -7,55 +7,59 @@ import { history, tb_screening } from './clinic.model';
 @Injectable()
 export class ClinicserviceService {
   // xampp
-  // urlAPi = 'http://localhost/otom/query/ph_query.php';
-  // urlAPi_pername = 'http://localhost/otom/query/query_pername.php';
-  // urlAPi_province = 'http://localhost/otom/query/query_province.php';
-  // urlAPi_amphures = 'http://localhost/otom/query/query_amphures.php';
-  // urlAPi_district = 'http://localhost/otom/query/query_district.php';
-  // urlAPi_tb_occupation = 'http://localhost/otom/query/query_tb_occupation.php';
-  // urlAPi_tb_ethnicity = 'http://localhost/otom/query/query_tb_ethnicity.php';
-  // urlAPi_tb_nationality = 'http://localhost/otom/query/query_tb_nationality.php';
-  // urlAPi_tb_religion = 'http://localhost/otom/query/query_tb_religion.php';
-  // urlAPi_in_arr = 'http://localhost/otom/query/in_allergys.php';
-  // urlAPi_id = 'http://localhost/otom/query/ph_query_id.php';
-  // urlAPi_report_allergys = 'http://localhost/otom/query/query_report_allergys.php';
-  // urlAPi_tb_medicine = 'http://localhost/otom/query/query_tb_medicine.php';
-  // query_tb_allergys = 'http://localhost/otom/query/query_allergys.php';
-  // urlAPi_tb_screening = 'http://localhost/otom/query/tb_screening_query.php';
-  // urlAPi_tb_send_check = 'http://localhost/otom/query/tb_send_check_query.php';
-  // urlAPi_in = 'http://localhost/otom/query/ph_in_edit_del.php';
-  // urlAPi_Screening = 'http://localhost/otom/query/tb_screening_in_edit_del.php';
-  // urlAPi_test = 'http://localhost/otom/query/test.php';
+  urlAPi = 'http://localhost/otom/query/ph_query.php';
+  urlAPi_pername = 'http://localhost/otom/query/query_pername.php';
+  urlAPi_province = 'http://localhost/otom/query/query_province.php';
+  urlAPi_amphures = 'http://localhost/otom/query/query_amphures.php';
+  urlAPi_district = 'http://localhost/otom/query/query_district.php';
+  urlAPi_tb_occupation = 'http://localhost/otom/query/query_tb_occupation.php';
+  urlAPi_tb_ethnicity = 'http://localhost/otom/query/query_tb_ethnicity.php';
+  urlAPi_tb_nationality = 'http://localhost/otom/query/query_tb_nationality.php';
+  urlAPi_tb_religion = 'http://localhost/otom/query/query_tb_religion.php';
+  urlAPi_in_arr = 'http://localhost/otom/query/in_allergys.php';
+  urlAPi_id = 'http://localhost/otom/query/ph_query_id.php';
+  urlAPi_report_allergys = 'http://localhost/otom/query/query_report_allergys.php';
+  urlAPi_tb_medicine = 'http://localhost/otom/query/query_tb_medicine.php';
+  query_tb_allergys = 'http://localhost/otom/query/query_allergys.php';
+  urlAPi_tb_screening = 'http://localhost/otom/query/tb_screening_query.php';
+  urlAPi_tb_send_check = 'http://localhost/otom/query/tb_send_check_query.php';
+  urlAPi_in = 'http://localhost/otom/query/ph_in_edit_del.php';
+  urlAPi_Screening = 'http://localhost/otom/query/tb_screening_in_edit_del.php';
+  urlAPi_test = 'http://localhost/otom/query/test.php';
 
   // new
   del_tb_allergys = 'http://localhost/otom/query/del_tb_allergys.php';
+  ph_query_num = 'http://localhost/otom/query/ph_query_num.php';
 
   // host
-  urlAPi = 'http://202.29.52.61/~hosdb/otom/query/ph_query.php';
-  urlAPi_pername = 'http://202.29.52.61/~hosdb/otom/query/query_pername.php';
-  urlAPi_province = 'http://202.29.52.61/~hosdb/otom/query/query_province.php';
-  urlAPi_amphures = 'http://202.29.52.61/~hosdb/otom/query/query_amphures.php';
-  urlAPi_district = 'http://202.29.52.61/~hosdb/otom/query/query_district.php';
-  urlAPi_tb_occupation = 'http://202.29.52.61/~hosdb/otom/query/query_tb_occupation.php';
-  urlAPi_tb_ethnicity = 'http://202.29.52.61/~hosdb/otom/query/query_tb_ethnicity.php';
-  urlAPi_tb_nationality = 'http://202.29.52.61/~hosdb/otom/query/query_tb_nationality.php';
-  urlAPi_tb_religion = 'http://202.29.52.61/~hosdb/otom/query/query_tb_religion.php';
-  urlAPi_in_arr = 'http://202.29.52.61/~hosdb/otom/query/in_allergys.php';
-  urlAPi_id = 'http://202.29.52.61/~hosdb/otom/query/ph_query_id.php';
-  urlAPi_report_allergys = 'http://202.29.52.61/~hosdb/otom/query/query_report_allergys.php';
-  urlAPi_tb_medicine = 'http://202.29.52.61/~hosdb/otom/query/query_tb_medicine.php';
-  query_tb_allergys = 'http://202.29.52.61/~hosdb/otom/query/query_allergys.php';
-  urlAPi_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/tb_screening_query.php';
-  urlAPi_tb_send_check = 'http://202.29.52.61/~hosdb/otom/query/tb_send_check_query.php';
-  urlAPi_in = 'http://202.29.52.61/~hosdb/otom/query/ph_in_edit_del.php';
-  urlAPi_Screening = 'http://202.29.52.61/~hosdb/otom/query/tb_screening_in_edit_del.php';
-  urlAPi_test = 'http://202.29.52.61/~hosdb/otom/query/member_test.php';
+  // urlAPi = 'http://202.29.52.61/~hosdb/otom/query/ph_query.php';
+  // urlAPi_pername = 'http://202.29.52.61/~hosdb/otom/query/query_pername.php';
+  // urlAPi_province = 'http://202.29.52.61/~hosdb/otom/query/query_province.php';
+  // urlAPi_amphures = 'http://202.29.52.61/~hosdb/otom/query/query_amphures.php';
+  // urlAPi_district = 'http://202.29.52.61/~hosdb/otom/query/query_district.php';
+  // urlAPi_tb_occupation = 'http://202.29.52.61/~hosdb/otom/query/query_tb_occupation.php';
+  // urlAPi_tb_ethnicity = 'http://202.29.52.61/~hosdb/otom/query/query_tb_ethnicity.php';
+  // urlAPi_tb_nationality = 'http://202.29.52.61/~hosdb/otom/query/query_tb_nationality.php';
+  // urlAPi_tb_religion = 'http://202.29.52.61/~hosdb/otom/query/query_tb_religion.php';
+  // urlAPi_in_arr = 'http://202.29.52.61/~hosdb/otom/query/in_allergys.php';
+  // urlAPi_id = 'http://202.29.52.61/~hosdb/otom/query/ph_query_id.php';
+  // urlAPi_report_allergys = 'http://202.29.52.61/~hosdb/otom/query/query_report_allergys.php';
+  // urlAPi_tb_medicine = 'http://202.29.52.61/~hosdb/otom/query/query_tb_medicine.php';
+  // query_tb_allergys = 'http://202.29.52.61/~hosdb/otom/query/query_allergys.php';
+  // urlAPi_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/tb_screening_query.php';
+  // urlAPi_tb_send_check = 'http://202.29.52.61/~hosdb/otom/query/tb_send_check_query.php';
+  // urlAPi_in = 'http://202.29.52.61/~hosdb/otom/query/ph_in_edit_del.php';
+  // urlAPi_Screening = 'http://202.29.52.61/~hosdb/otom/query/tb_screening_in_edit_del.php';
+  // urlAPi_test = 'http://202.29.52.61/~hosdb/otom/query/member_test.php';
 
   constructor( private http: HttpClient) { }
 
   // คิวรี่
   getph(): Observable<history[]> {
     return this.http.get<history[]>(this.urlAPi);
+  }
+  get_num_row(): Observable<any> {
+    return this.http.get<any>(this.ph_query_num);
   }
   getpername(): Observable<any> {
     return this.http.get<any>(this.urlAPi_pername);

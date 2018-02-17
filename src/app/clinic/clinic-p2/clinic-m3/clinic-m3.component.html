@@ -84,36 +84,127 @@
                     ข้อมูลส่วนตัว
                 </div>
                 <div class="card-body">
-                    <p>นาย {{postdata.name_ph}} {{postdata.lastname_ph}}</p>
-                    <form #ScreeningForm='ngForm' (ngSubmit)="submit(ScreeningForm.value);">
+                    <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
                         <div class="row">
                             <div class="col-md-2">
-                                ความดันโลหิตค่าบน {{postdata.blood_pressure_top}}
-
+                                <label for="n_ph">คำนำหน้า</label>
+                                <select class="form-control" [(ngModel)]='PRENAMEID' name="PRENAME_ID" id="n_ph" disabled>
+                                    <option selected="selected" value="">คุณ</option>
+                                    <option *ngFor="let i of data_pername;" value="{{i.PRENAME_ID}}">{{i.PRENAME}}</option>
+                                </select>
                             </div>
-                            <div class="col-md-2">
-                                ความดันโลหิตค่าล่าง {{postdata.blood_pressure_down}}
+                            <div class="col-md-5">
+                                <label for="name_ph">ชื่อ</label>
+                                <input [(ngModel)]='name_ph' ngModel type="text" name="name_ph" class="form-control" id="name_ph" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="lastname_ph">นามสกุล</label>
+                                <input [(ngModel)]='lastname_ph' ngModel type="text" name="lastname_ph" class="form-control" id="lastname_ph" readonly>
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-4">
+                                <label for="birthday">วันเกิด</label>
+                                <input type="date" [(ngModel)]='birthday' ngModel name="birthday" class="form-control" id="birthday" readonly="">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="time_birthday">เวลาเกิด</label>
+                                <input type="time" [(ngModel)]='time_birthday' ngModel name="time_birthday" class="form-control" id="time_birthday" readonly="">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sex_ph">เพศ</label>
+                                <select class="form-control" [(ngModel)]='sex_ph' ngModel name="sex_ph" id="sex_ph" readonly="" disabled>
+                                    <option value="m">ชาย</option>
+                                    <option value="f">หญิง</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="no">บ้านเลขที่</label>
+                                <input type="text" class="form-control" [(ngModel)]='no' ngModel name="no" id="no" readonly="">
+                            </div>
                             <div class="col-md-1">
-                                น้ำหนัก {{postdata.weight}}
+                                <label for="moo">หมู่</label>
+                                <input type="text" class="form-control" [(ngModel)]='moo' ngModel name="moo" id="moo" readonly="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="road">ถนน</label>
+                                <input type="text" class="form-control" [(ngModel)]='road' ngModel name="road" id="road" readonly="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="PROVINCE_ID">จังหวัด</label>
+                                <select class="form-control" [(ngModel)]="PROVINCE_ID" name="PROVINCE_ID" id="PROVINCE_ID" (change)="my_amphures(PROVINCE_ID)"
+                                    readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_province;" value="{{i.PROVINCE_ID}}">{{i.PROVINCE_NAME}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="AMPHUR_ID">อำเภอ</label>
+                                <select class="form-control" [(ngModel)]="AMPHUR_ID" name="AMPHUR_ID" id="AMPHUR_ID" (change)="my_district(AMPHUR_ID)" readonly=""
+                                    disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_getamphures;" value="{{i.AMPHUR_ID}}">{{i.AMPHUR_NAME}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="DISTRICT_ID">ตำบล</label>
+                                <select class="form-control" [(ngModel)]="DISTRICT_ID" name="DISTRICT_ID" id="DISTRICT_ID" readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_district;" value="{{i.DISTRICT_ID}}">{{i.DISTRICT_NAME}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="OCCUPATION_ID">อาชีพ</label>
+                                <select class="form-control" [(ngModel)]='OCCUPATION_ID' ngModel name="OCCUPATION_ID" id="OCCUPATION_ID" readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_tb_occupation;" value="{{i.OCCUPATION_ID}}">{{i.OCCUPATION_NAME}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="tel">โทรศัพท์</label>
+                                <input [(ngModel)]='tel_ph' ngModel name="tel_ph" class="form-control" id="tel" readonly="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="ETHNICITYE_ID">เชื้อชาติ</label>
+                                <select class="form-control" [(ngModel)]='ETHNICITYE_ID' ngModel name="ETHNICITYE_ID" id="ETHNICITYE_ID" readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_tb_ethnicity;" value="{{i.ETHNICITYE_ID}}">{{i.ETHNICITY_NAME}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="NATIONALITY_ID">สัญชาติ</label>
+                                <select class="form-control" [(ngModel)]='NATIONALITY_ID' ngModel name="NATIONALITY_ID" id="NATIONALITY_ID" readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_tb_nationality;" value="{{i.NATIONALITY_ID}}">{{i.NATIONALITY_NAME}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="RELIGION_ID">ศาสนา</label>
+                                <select class="form-control" [(ngModel)]='RELIGION_ID' ngModel name="RELIGION_ID" id="RELIGION_ID" readonly="" disabled>
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_tb_religion;" value="{{i.RELIGION_ID}}">{{i.RELIGION_NAME}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                อาการ {{postdata.patient_symptoms}}
+                                <table>
+                                    <tr *ngFor="let i of data_allergys;">
+                                        <td>{{'- '+i.n_medicine}}</td>
+                                    </tr>
+                                </table>
+
                             </div>
                         </div>
-                        <br>
-                        <!-- <div class="row">
-                                  <div class="col-md-12">
-                          <button class="btn btn-primary butom" type="submit">บันทึก</button><button class="btn btn-light butom" type="button" (click)="myCancel()">ยกเลิก</button>
-                                  </div>
-                              </div>     -->
-                        <input type="hidden" [(ngModel)]='postdata.id_screening' ngModel name="t5">
                     </form>
-
                 </div>
             </div>
         </span>
@@ -162,6 +253,16 @@
                     การวินิจฉัย
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-left">อาการของโรค</div>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-left">แพ้ยา</div>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </span>
@@ -210,6 +311,13 @@
                     Medication
                 </div>
                 <div class="card-body">
+                        <div class="col-md-6">
+                                <div class="text-left">อาการของโรค</div>
+                                <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-left">แพ้ยา</div>
+                            </div>
                 </div>
             </div>
         </span>

@@ -9,8 +9,8 @@
     margin: 5px 5px 0px 0px;
 }.row{
     margin-bottom: 15px;
-}.style1{
+}.show{
     display: '';
-}.style2{
+}.hide{
     display: none;
 }

@@ -16,8 +16,10 @@ export class ClinicM2Component implements OnInit {
   postdata: any;
   postdatal: any;
   str: any;
-  my_Class = 'style1';
-  my_Class1 = 'style2';
+  my_Class = 'show';
+  my_Class1 = 'hide';
+  my_Class2 = 'hide';
+  my_Class3 = 'hide';
   id_screening: any;
   // ประวัติผู้ป่วย
   PRENAMEID: any;
@@ -64,6 +66,7 @@ export class ClinicM2Component implements OnInit {
   u13: any;
   u14: any;
   u15: any;
+  u16: any;
   mm: any;
   status: any;
   constructor( private clsv: ClinicserviceService ) { 
@@ -79,6 +82,8 @@ export class ClinicM2Component implements OnInit {
     this.if_text = 'table';
   }
   myPatient(id: any) {
+    this.my_Class2 = 'show';
+    this.my_Class3 = 'hide';
     this.if_text = 'form';
     this.id_text = {
       id_screening: id,
@@ -90,6 +95,20 @@ export class ClinicM2Component implements OnInit {
       () => {
         this.u1 = this.postdata['0'];
         this.u2 = this.postdata['1'];
+        this.u3 = '';
+        this.u4 = '';
+        this.u5 = '';
+        this.u6 = '';
+        this.u7 = '';
+        this.u8 = '';
+        this.u9 = '';
+        this.u10 = '';
+        this.u11 = '';
+        this.u12 = '';
+        this.u13 = '';
+        this.u14 = '';
+        this.u15 = '';
+        this.u16 = '';
         this.clsv.getpername().subscribe(
           (txtdata) => this.data_pername = txtdata
         );
@@ -156,28 +175,27 @@ export class ClinicM2Component implements OnInit {
       () => {
         console.log(this.postdata);
         // this.router.navigate(['../system',{outlets:{'c2':['s1']}}]); คำสั่งเปลียนหน้า
-        // this.clsv.get_tb_screening().subscribe(
-        //   (txtdata) => this.data_ph = txtdata,
-        //   (error) => alert(error),
-        //   () => {
-        //   }
-        // );
+        this.clsv.get_tb_screening().subscribe(
+          (txtdata) => this.data_ph = txtdata
+        );
       }
     );
   }
   // ข้อมูลระเบียนเวช
   my_click() {
-    this.my_Class = 'style2';
-    this.my_Class1 = 'style1';
+    this.my_Class = 'hide';
+    this.my_Class1 = 'show';
   }
 
  // ยกเลิก
   my_cancel() {
-    this.my_Class = 'style1';
-    this.my_Class1 = 'style2';
+    this.my_Class = 'show';
+    this.my_Class1 = 'hide';
   }
 
   my_hit (id: any) {
+    this.my_Class2 = 'hide';
+    this.my_Class3 = 'show';
     this.if_text = 'form';
     this.id_text = {
       id_screening: id,
@@ -195,16 +213,21 @@ export class ClinicM2Component implements OnInit {
         this.u6 = this.postdata.weight;
         this.u7 = this.postdata.height;
         this.u8 = this.postdata.blood_pressure_top;
-        this.u9 = this.postdata['1'];
-        this.u10 = this.postdata['1'];
-        this.u11 = this.postdata['1'];
-        this.u12 = this.postdata['1'];
-        this.u13 = this.postdata['1'];
-        this.u14 = this.postdata['1'];
-        this.u15 = this.postdata['1'];
+        this.u9 = this.postdata.blood_pressure_down;
+        this.u10 = this.postdata.heat;
+        this.u11 = this.postdata.HR;
+        this.u12 = this.postdata.Pulse;
+        this.u13 = this.postdata.RR;
+        this.u14 = this.postdata.waistline;
+        this.u15 = this.postdata.smoking;
+        this.u16 = this.postdata.drinking;
         console.log(this.postdata);
       }
     );
+  }
+
+  my_back() {
+    this.if_text = 'table';
   }
 
 }

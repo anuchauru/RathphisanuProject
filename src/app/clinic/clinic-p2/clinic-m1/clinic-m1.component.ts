@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClinicserviceService } from '../../clinicservice.service';
 import { LoginService } from '../../../app.service';
 
+
 @Component({
   selector: 'app-clinic-m1',
   templateUrl: './clinic-m1.component.html',
@@ -78,21 +79,46 @@ export class ClinicM1Component implements OnInit {
   data_allergys: any;
   data_delete: any;
   mm: any;
+  num_row: number;
+  Per_Page = 5;
+  Num_Pages: any;
 
-  constructor( private clsv: ClinicserviceService, private token: LoginService ) {
+  constructor(private clsv: ClinicserviceService, private token: LoginService) {
     this.clsv.getph().subscribe(
       (txtdata) => this.data_ph = txtdata
     );
-   }
+    this.clsv.get_num_row().subscribe(
+      (txtdata) => this.num_row = txtdata,
+      (error) => alert(error),
+      () => {
+        if (this.num_row <= this.Per_Page) {
+          this.Num_Pages = 1;
+        } else if ((this.num_row % this.Per_Page) == 0) {
+          this.Num_Pages = (this.num_row / this.Per_Page);
+        } else {
+          this.Num_Pages = (this.num_row / this.Per_Page) + 1;
+          this.Num_Pages = Math.floor(this.Num_Pages);
+        }
+        // console.log(this.Num_Pages);
+        // this.Num_Pages = 2;
+        // this.Num_Pages.forEach((i) => {
+        // });
 
-  ngOnInit() {
-  // เก็บค่า
-  this.if_text = 'table';
-  this.data =  JSON.parse(sessionStorage.getItem('data'));
-  this.Allergys = [];
+        // for (let i = 0; i < this.Num_Pages ; i++) {
+        //   console.log(i);
+        // }
+      }
+    );
   }
 
-// เรียกฟอรฺ์มข้อมูลผู้ป่วย
+  ngOnInit() {
+    // เก็บค่า
+    this.if_text = 'table';
+    this.data = JSON.parse(sessionStorage.getItem('data'));
+    this.Allergys = [];
+  }
+
+  // เรียกฟอรฺ์มข้อมูลผู้ป่วย
   myinsert() {
     this.if_text = 'insert';
     this.clsv.getpername().subscribe(
@@ -122,17 +148,17 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
-// ยกเลิกการเพิ่มข้อมูลผู้ป่วย 
+  // ยกเลิกการเพิ่มข้อมูลผู้ป่วย 
   mycancelinsert() {
     this.if_text = 'table';
   }
 
-// ปุ่มย้อนกลับ
+  // ปุ่มย้อนกลับ
   mycanceledit() {
     this.if_text = 'table';
   }
 
-// เลือกอำเภอ
+  // เลือกอำเภอ
   my_amphures(datal) {
     this.clsv.postamphures(datal).subscribe(
       (txdata) => this.data_getamphures = txdata,
@@ -152,7 +178,7 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
-// เลือกตำบล
+  // เลือกตำบล
   my_district(datal) {
     this.clsv.postdistrict(datal).subscribe(
       (txdata) => this.data_district = txdata,
@@ -164,8 +190,8 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
-// เรียกฟอร์มการแพ้ยา
-   myAllergys() {
+  // เรียกฟอร์มการแพ้ยา
+  myAllergys() {
     // console.log(this.Allergys);
     this.my_Class = 'style2';
     this.my_Class1 = 'style1';
@@ -177,7 +203,7 @@ export class ClinicM1Component implements OnInit {
     this.clsv.get_tb_medicine().subscribe((txtdata) => this.data_tb_medicine = txtdata);
   }
 
-// บันทึกข้อมูลการแพ้ยาเข้า array
+  // บันทึกข้อมูลการแพ้ยาเข้า array
   submitdrug(txform1: any) {
     this.Allergys.unshift(txform1);
     this.name_all = [];
@@ -185,118 +211,118 @@ export class ClinicM1Component implements OnInit {
     this.my_Class1 = 'style2';
     this.Allergys.forEach((i) => {
       this.data_report_allergys.forEach((e) => {
-         if(i.id_report_allergys == e.id_report_allergys){
+        if (i.id_report_allergys == e.id_report_allergys) {
           this.name = e.name_report_allergys;
-         }
+        }
       });
       this.data_tb_medicine.forEach((e) => {
         if (i.id_medicine == e.id_medicine) {
-         this.name2 = e.n_medicine;
+          this.name2 = e.n_medicine;
         }
-     });
-     this.name_all.push({
-       name: this.name,
-       age: this.name2
+      });
+      this.name_all.push({
+        name: this.name,
+        age: this.name2
       });
     });
     console.log(this.Allergys);
     console.log(this.name_all);
   }
 
-// ลบการแพ้ยา(ฐานข้อมูล)
+  // ลบการแพ้ยา(ฐานข้อมูล)
   remove_data(ar) {
     this.data_delete.unshift({
       id_allergys: ar.id_allergys
-     });
+    });
     console.log(this.data_delete);
     this.data_allergys.forEach((element, index) => {
       if (element == ar) {
-         this.data_allergys.splice(index, 1);
+        this.data_allergys.splice(index, 1);
       }
     });
   }
 
-// ลบการแพ้ยา(array)
+  // ลบการแพ้ยา(array)
   remove(ar) {
     this.name_all.forEach((element, index) => {
       if (element == ar) {
-         this.name_all.splice(index, 1);
-         this.Allergys.splice(index, 1);
+        this.name_all.splice(index, 1);
+        this.Allergys.splice(index, 1);
       }
     });
   }
 
-// ยกเลิกการแพ้ยา
+  // ยกเลิกการแพ้ยา
   mycancelAllergy() {
     this.my_Class = 'style1';
     this.my_Class1 = 'style2';
   }
 
-// เพิ่มข้อมูลผู้ป่วย
+  // เพิ่มข้อมูลผู้ป่วย
   submit(txform: any) {
     this.txt = {
-          token: this.data.token,
-          m_id: this.data.m_id
-         };
+      token: this.data.token,
+      m_id: this.data.m_id
+    };
     this.token.get_token(this.txt).subscribe(
       (txtdata) => this.data_token = txtdata,
       (error) => alert(error),
-          () => {
-            if (this.data_token.status === 'ture') {
-              this.if_text = 'table';
-              txform.mm_insert = 'mm_insert';
-              this.str = {
-                id_ph: txform.id_ph,
-                PRENAME_ID: txform.PRENAME_ID,
-                name_ph: txform.name_ph,
-                lastname_ph: txform.lastname_ph,
-                birthday: txform.birthday,
-                time_birthday: txform.time_birthday,
-                sex_ph: txform.sex_ph,
-                no: txform.no,
-                moo: txform.moo,
-                road: txform.road,
-                PROVINCE_ID: txform.PROVINCE_ID,
-                AMPHUR_ID: txform.AMPHUR_ID,
-                DISTRICT_ID: txform.DISTRICT_ID,
-                OCCUPATION_ID: txform.OCCUPATION_ID,
-                tel: txform.tel,
-                ETHNICITYE_ID: txform.ETHNICITYE_ID,
-                NATIONALITY_ID: txform.NATIONALITY_ID,
-                RELIGION_ID: txform.RELIGION_ID,
-                mm_insert: txform.mm_insert
-              };
-              this.clsv.postph(this.str).subscribe(
+      () => {
+        if (this.data_token.status === 'ture') {
+          this.if_text = 'table';
+          txform.mm_insert = 'mm_insert';
+          this.str = {
+            id_ph: txform.id_ph,
+            PRENAME_ID: txform.PRENAME_ID,
+            name_ph: txform.name_ph,
+            lastname_ph: txform.lastname_ph,
+            birthday: txform.birthday,
+            time_birthday: txform.time_birthday,
+            sex_ph: txform.sex_ph,
+            no: txform.no,
+            moo: txform.moo,
+            road: txform.road,
+            PROVINCE_ID: txform.PROVINCE_ID,
+            AMPHUR_ID: txform.AMPHUR_ID,
+            DISTRICT_ID: txform.DISTRICT_ID,
+            OCCUPATION_ID: txform.OCCUPATION_ID,
+            tel: txform.tel,
+            ETHNICITYE_ID: txform.ETHNICITYE_ID,
+            NATIONALITY_ID: txform.NATIONALITY_ID,
+            RELIGION_ID: txform.RELIGION_ID,
+            mm_insert: txform.mm_insert
+          };
+          this.clsv.postph(this.str).subscribe(
+            () => {
+              this.clsv.postarray(this.Allergys).subscribe(
                 () => {
-                  this.clsv.postarray(this.Allergys).subscribe(
-                    () => {
-                      this.clsv.getph().subscribe((txtdata) => this.data_ph = txtdata);
-                    }
-                  );
-                 }
+                  this.clsv.getph().subscribe((txtdata) => this.data_ph = txtdata);
+                }
               );
-                // this.router.navigate(['../system',{outlets:{'c2':['s1']}}]); คำสั่งเปลียนหน้า
-            } else {
-              sessionStorage.removeItem('data');
-              // window.location.reload();
-              // this.router.navigate(['']);
-              window.location.href = '';
             }
-            // console.log(this.data_token);
-          }
+          );
+          // this.router.navigate(['../system',{outlets:{'c2':['s1']}}]); คำสั่งเปลียนหน้า
+        } else {
+          sessionStorage.removeItem('data');
+          // window.location.reload();
+          // this.router.navigate(['']);
+          window.location.href = '';
+        }
+        // console.log(this.data_token);
+      }
     );
   }
 
-// แสดงข้อมูลผู้ป่วย
-  myclick(id: any){
+  // แสดงข้อมูลผู้ป่วย
+  myclick(id: any) {
     this.data_delete = [];
     this.if_text = 'show';
     this.edit_text = 'show';
     this.id_text = {
       id_ph: id,
       mm_edit_query: 'mm_edit_query'
-     };
-     this.clsv.postEph(this.id_text).subscribe(
+    };
+    this.clsv.postEph(this.id_text).subscribe(
       (data) => this.postdata = data,
       (error) => alert(error),
       () => {
@@ -323,7 +349,7 @@ export class ClinicM1Component implements OnInit {
         this.clsv.postdistrict(this.postdata.AMPHUR_ID).subscribe(
           (txdata) => this.data_district = txdata
         );
-       }
+      }
     );
     this.clsv.getpername().subscribe(
       (txtdata) => this.data_pername = txtdata
@@ -348,14 +374,14 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
- // เรียกฟอร์มแก้ไข
+  // เรียกฟอร์มแก้ไข
   myedit() {
     this.edit_text = 'edit';
     this.Allergys = [];
     this.name_all = [];
   }
 
-// ยกเลิกการแก้ไขข้อมูลผู้ป่วย
+  // ยกเลิกการแก้ไขข้อมูลผู้ป่วย
   mycancen() {
     this.Allergys = [];
     this.name_all = [];
@@ -388,7 +414,7 @@ export class ClinicM1Component implements OnInit {
         this.clsv.postdistrict(this.postdata.AMPHUR_ID).subscribe(
           (txdata) => this.data_district = txdata
         );
-       }
+      }
     );
 
     this.clsv.getpername().subscribe(
@@ -415,7 +441,7 @@ export class ClinicM1Component implements OnInit {
     this.data_delete = [];
   }
 
-// บันทึกการแก้ไขข้อมูลผู้ป่วย
+  // บันทึกการแก้ไขข้อมูลผู้ป่วย
   edit(txform: any) {
     this.if_text = 'show';
     this.edit_text = 'show';
@@ -445,7 +471,7 @@ export class ClinicM1Component implements OnInit {
       (tsform) => this.postdata = tsform,
       (error) => alert(error),
       () => {
-        if (this.Allergys.length > 0 ) {
+        if (this.Allergys.length > 0) {
           this.clsv.postarray(this.Allergys).subscribe(
             (tsform) => this.data = tsform,
             (error) => alert(error),
@@ -456,7 +482,7 @@ export class ClinicM1Component implements OnInit {
             }
           );
         }
-        if (this.data_delete.length > 0 ) {
+        if (this.data_delete.length > 0) {
           this.clsv.post_delete(this.data_delete).subscribe(
             (tsform) => this.postdata = tsform
           );
@@ -466,11 +492,11 @@ export class ClinicM1Component implements OnInit {
   }
 
   // ลบ
-  mydelete(id: any){
+  mydelete(id: any) {
     this.id_text = {
-          id_ph: id,
-          mm_delete: 'mm_delete'
-         };
+      id_ph: id,
+      mm_delete: 'mm_delete'
+    };
     this.clsv.postdelete(this.id_text).subscribe(
       (data) => this.postdelete = data,
       (error) => alert(error),
@@ -479,16 +505,16 @@ export class ClinicM1Component implements OnInit {
           (txtdata) => this.data_ph = txtdata,
           (error) => alert(error)
         );
-       }
+      }
     );
   }
-// ส่งคัดกรอง
+  // ส่งคัดกรอง
   myScreening() {
     this.if_text = 'table';
     this.id_text = {
       id_ph: this.id_text.id_ph,
       mm_insert: 'tb_screening'
-     };
+    };
     this.clsv.postph(this.id_text).subscribe(
       (txtdata) => this.postdata = txtdata,
       (error) => alert(error),
@@ -498,7 +524,7 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
-// ค้นหา
+  // ค้นหา
   search(txform: any) {
     this.if_text = 'table';
     txform.mm_insert = 'search';
@@ -523,13 +549,13 @@ export class ClinicM1Component implements OnInit {
     );
   }
 
-// แสดงข้อมูลรายบุคล
+  // แสดงข้อมูลรายบุคล
   pagea() {
     this.if_text = 'show';
     this.edit_text = 'show';
   }
 
-// แสดงข้อมูลการเข้ารับบริการ 
+  // แสดงข้อมูลการเข้ารับบริการ 
   pageb() {
     this.if_text = 'show2';
   }
