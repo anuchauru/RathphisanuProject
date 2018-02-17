@@ -7,7 +7,7 @@ export class StockseriveService {
   // คลังยา
   query_tb_medicine = 'http://202.29.52.61/~hosdb/otom/query/query_tb_medicine.php';
   // คลังยา
-  
+
   // รับยา คิวรี่
   query_tb_unit = 'http://202.29.52.61/~hosdb/otom/query/query_tb_unit.php';
   query_id_bill = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/query_id_bill.php';
@@ -15,6 +15,7 @@ export class StockseriveService {
   array_tb_stock_medicine = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/array_tb_stock_medicine.php';
   insert_order = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/insert_order.php';
   insert_order_array = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/insert_order_array.php';
+  query_order = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/query_order.php';
   // รับยา
   constructor(private http: HttpClient) { }
   // คลังยา
@@ -40,6 +41,9 @@ export class StockseriveService {
   }
   post_order_array(data: any): Observable<any> {
     return this.http.post<any>(this.insert_order_array, data);
+  }
+  get_order(): Observable<any> {
+    return this.http.get<any>(this.query_order);
   }
   // รับยา
 }

@@ -8,7 +8,46 @@
 </div>
 
 <div class="page">
+  <span *ngIf="if_txt=='table'">
+      <button (click)="myinsert()" type="button" class="btn btn-primary r">
+          เพิ่มรายการ
+        </button>
+    <form #searchForm='ngForm' (ngSubmit)="search(searchForm.value);">
+      <div class="row">
+        <div class="col-lg-1 sc">ค้นหา :</div>
+        <div class="col-lg-2">
+          <select #c1='ngModel' ngModel class="form-control" name="search">
+            <option value="id_card_ph">เลขประจําตัวประชาชน</option>
+            <option value="name_ph">ชื่อ</option>
+            <option value="lastname_ph">นามสกุล</option>
+          </select>
+        </div>
+        <div class="col-lg-2">
+          <input #c2='ngModel' ngModel type="text" name="key_search" class="form-control" placeholder="" aria-label="Search for...">
+        </div>
+        <button class="btn btn-secondary" type="submit">ค้นหา</button>
 
+      </div>
+    </form>
+    <table class="table table-striped table-bordered table-hover" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col" width="50px;">#</th>
+          <th scope="col">รหัส</th>
+          <th scope="col">วันที่</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data_order; let n = index">
+          <th scope="row">{{n+1}}</th>
+          <td>{{i.num_bill}}</td>
+          <td width='15%' >{{i.order_bill}}</td>
+          <td width='5%'><button>ดู</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
   <span *ngIf="if_txt=='page1'">
     <div class="card">
       <div class="card-header">
@@ -87,7 +126,7 @@
             <div class="col-md-2">
               <select class="form-control" [(ngModel)]='id_medicine' name="id_medicine" (change)="my_medicine(id_medicine)">
                 <option selected="selected" value="">กรุณาเลือก</option>
-                <option *ngFor="let i of data_medicine;" value="{{i.id_medicine}}">{{i.n_medicine}}</option>
+                <option *ngFor="let i of data_medicine;" value="{{i.id_medicine}}">{{i.n_medicine}} ({{i.n_unit}})</option>
               </select>
             </div>
             <div class="col-md-3">
@@ -117,7 +156,7 @@
               <button (click)="my_cancen_add()" type="button" class="btn btn-primary">ยกเลิก</button>
             </div>
           </div>
-          <input type="text" [(ngModel)]='id_bill' ngModel name="id_bill">
+          <input type="hidden" [(ngModel)]='id_bill' ngModel name="id_bill">
         </form>
       </div>
     </div>
