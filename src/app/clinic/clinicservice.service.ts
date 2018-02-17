@@ -55,6 +55,7 @@ export class ClinicserviceService {
   del_tb_allergys = 'http://202.29.52.61/~hosdb/otom/query/del_tb_allergys.php';
   ph_query_num = 'http://202.29.52.61/~hosdb/otom/query/ph_query_num.php';
 
+  pstatus: string[] = ['รอคัดกรอง', 'รอตรวจ', 'เสร็จสิ้น'];
 
   // ห้องตรวจ
   query_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/clinic/query_tb_screening.php';

@@ -82,8 +82,11 @@ export class ClinicM1Component implements OnInit {
   num_row: number;
   Per_Page = 5;
   Num_Pages: any;
+  pstatus: any;
+  
 
   constructor(private clsv: ClinicserviceService, private token: LoginService) {
+    this.pstatus = this.clsv.pstatus;
     this.clsv.getph().subscribe(
       (txtdata) => this.data_ph = txtdata
     );
