@@ -109,43 +109,33 @@ import { LoginUserComponent } from './login-user/login-user.component';
     FormsModule,
     RouterModule.forRoot([
       // Define Path URL
-      { path: '', component: HomeComponent,
-      children: [
-        { path: '', component: AboutComponent, outlet: 'c2' },
-        { path: '**', component: AboutComponent, outlet: 'c2' },
-        ]
-      },
+      { path: '', component: ClinicComponent },
       {
-        path: 'home',
-        component: HomeComponent,
-        children: [
-          { path: 'index', component: AboutComponent, outlet: 'c2' },
-          { path: 'product', component: ProductComponent, outlet: 'c2' },
-          { path: '', component: AboutComponent, outlet: 'c2' },
-          { path: '**', component: AboutComponent, outlet: 'c2' }
-        ]
-      },
-      {
-        path: 'clinic',
-        component: ClinicComponent,
+        path: 'clinic', component: ClinicComponent,
         children: [
           { path: 'c1', component: ClinicP1Component, outlet: 'c2' },
-          { path: 'c2', component: ClinicP2Component, outlet: 'c2',
+          {
+            path: 'c2', component: ClinicP2Component, outlet: 'c2',
             children: [
-            { path: 't1', component: ClinicM1Component, outlet: 'c3' },
-            { path: 't2', component: ClinicM2Component, outlet: 'c3' },
-            { path: 't3', component: ClinicM3Component, outlet: 'c3' },
-            { path: 't4', component: ClinicM1Component, outlet: 'c3' },
-            { path: '', component: ClinicM1Component, outlet: 'c3' },
-            { path: '**', component: ClinicM1Component, outlet: 'c3' }
-            // {  path: '**', redirectTo: '/home', pathMatch: 'full' }
+              { path: 't1', component: ClinicM1Component, outlet: 'c3' },
+              { path: 't2', component: ClinicM2Component, outlet: 'c3' },
+              { path: 't3', component: ClinicM3Component, outlet: 'c3' },
+              { path: 't4', component: ClinicM1Component, outlet: 'c3' },
+              { path: '', component: ClinicComponent },
+              { path: '**', component: ClinicM1Component, outlet: 'c3' }
+              // {  path: '**', redirectTo: '/home', pathMatch: 'full' }
             ]
           },
           { path: 'c3', component: ClinicP3Component, outlet: 'c2' },
           { path: 'c4', component: ClinicP4Component, outlet: 'c2' },
           { path: 'c5', component: ClinicP5Component, outlet: 'c2' },
           { path: 'c6', component: ClinicP6Component, outlet: 'c2' },
-          { path: '', component: ClinicP1Component, outlet: 'c2' },
+          {
+            path: '', component: ClinicP2Component, outlet: 'c2',
+            children: [
+              { path: '', component: ClinicM1Component, outlet: 'c3' },
+            ]
+          },
           { path: '**', component: ClinicP1Component, outlet: 'c2' }
         ]
       },
@@ -153,20 +143,27 @@ import { LoginUserComponent } from './login-user/login-user.component';
         path: 'stock',
         component: StockComponent,
         children: [
-          { path: 'st0', component: StockP0Component, outlet: 'c2',
-          children: [
-            { path: 't1', component: StockP1Component, outlet: 'c3' },
-            { path: 't2', component: StockP2Component, outlet: 'c3' },
-            { path: 't3', component: StockP3Component, outlet: 'c3' },
-            { path: '', component: StockP1Component, outlet: 'c3' },
-            { path: '**', component: ClinicM1Component, outlet: 'c3' }
-          ]
-         },
+          {
+
+            path: 'st0', component: StockP0Component, outlet: 'c2',
+            children: [
+              { path: 't1', component: StockP1Component, outlet: 'c3' },
+              { path: 't2', component: StockP2Component, outlet: 'c3' },
+              { path: 't3', component: StockP3Component, outlet: 'c3' },
+              { path: '', component: StockP1Component, outlet: 'c3' },
+              { path: '**', component: ClinicM1Component, outlet: 'c3' }
+            ]
+          },
           { path: 'st1', component: StockP1Component, outlet: 'c2' },
           { path: 'st2', component: StockP2Component, outlet: 'c2' },
           { path: 'st3', component: StockP3Component, outlet: 'c2' },
           { path: 'st4', component: StockP4Component, outlet: 'c2' },
-          { path: '', component: StockP0Component, outlet: 'c2' },
+          {
+            path: '', component: StockP0Component, outlet: 'c2',
+            children: [
+              { path: '', component: StockP1Component, outlet: 'c3' },
+            ]
+          },
           { path: '**', component: StockP1Component, outlet: 'c2' }
         ]
       },
@@ -219,7 +216,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
 
     )
   ],
-  providers: [ProductService,  AuthService], // Add Service providers NewsService,
+  providers: [ProductService, AuthService], // Add Service providers NewsService,
   bootstrap: [AppComponent]   // First Component or First landingpage
 })
 export class AppModule { }
