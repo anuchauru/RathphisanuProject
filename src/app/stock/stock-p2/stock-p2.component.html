@@ -9,9 +9,9 @@
 
 <div class="page">
   <span *ngIf="if_txt=='table'">
-      <button (click)="myinsert()" type="button" class="btn btn-primary r">
-          เพิ่มรายการ
-        </button>
+    <button (click)="myinsert()" type="button" class="btn btn-primary r">
+      เพิ่มรายการ
+    </button>
     <form #searchForm='ngForm' (ngSubmit)="search(searchForm.value);">
       <div class="row">
         <div class="col-lg-1 sc">ค้นหา :</div>
@@ -42,8 +42,10 @@
         <tr *ngFor="let i of data_order; let n = index">
           <th scope="row">{{n+1}}</th>
           <td>{{i.num_bill}}</td>
-          <td width='15%' >{{i.order_bill}}</td>
-          <td width='5%'><button>ดู</button></td>
+          <td width='15%'>{{i.order_bill}}</td>
+          <td width='5%'>
+            <button (click)="my_view(i.id_bill)" type="button" class="btn btn-primary">ดู</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -213,6 +215,70 @@
         </form>
       </div>
     </div>
+  </span>
+  <span *ngIf="if_txt=='page4'">
+      <div class="card">
+          <div class="card-header">
+            ใบรับยาและเวชภัณฑ์
+          </div>
+          <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="n_ph">เลขที่รับ</label>
+                  <input [(ngModel)]='id_bill' ngModel type="text" name="id_bill" class="form-control">
+                </div>
+                <div class="col-md-5">
+                  <label for="name_ph">เลขที่ใบรับ</label>
+                  <input #c2='ngModel' ngModel type="text" name="num_bill" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="birthday">วันที่รับ</label>
+                  <input type="date" #c3='ngModel' ngModel name="order_bill" class="form-control" id="birthday">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary" (click)="my_add()">+ รายละเอียดยาและเวชภัณฑ์</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">รหัสยา</th>
+                        <th scope="col">ชื่อยา</th>
+                        <th scope="col">จำนวน</th>
+                        <th scope="col">หน่วย</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let i of array; let n=index; ">
+                        <td>{{n+1}}</td>
+                        <td>{{i.code_medicine}}</td>
+                        <td>{{i.n_medicine}}</td>
+                        <td>{{i.amount}}</td>
+                        <td>{{i.n_unit}}</td>
+                        <td>
+                          <button type="button" (click)="remove(i)">ลบ</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary">ย้อนกลับ</button>
+                </div>
+              </div>
+          </div>
+        </div>
   </span>
 
 

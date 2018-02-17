@@ -107,8 +107,11 @@ export class StockP2Component implements OnInit {
 
   }
 
-  myinsert(){
+  myinsert() {
     this.if_txt = 'page1';
+  }
+  my_view() {
+    this.if_txt = 'page4';
   }
 
 }
