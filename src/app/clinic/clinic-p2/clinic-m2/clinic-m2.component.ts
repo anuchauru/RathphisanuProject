@@ -183,9 +183,10 @@ export class ClinicM2Component implements OnInit {
       id_screening: this.id_screening,
       mm: this.mm 
      };
+
     this.clsv.postScreening(txform).subscribe(
       (tsform) => this.postdata = tsform,
-      (error) => alert(error),
+      (error) => alert(JSON.stringify(error)),
       () => {
         console.log(this.postdata);
         // this.router.navigate(['../system',{outlets:{'c2':['s1']}}]); คำสั่งเปลียนหน้า
