@@ -44,6 +44,7 @@ import { SystemPEditComponent } from './system/system-p1-show/system-p-edit/syst
 import { SystemP4Component } from './system/system-p4/system-p4.component';
 
 import { StockComponent } from './stock/stock.component';
+import { StockP0Component } from './stock/stock-p0/stock-p0.component';
 import { StockP1Component } from './stock/stock-p1/stock-p1.component';
 import { StockP2Component } from './stock/stock-p2/stock-p2.component';
 import { StockP3Component } from './stock/stock-p3/stock-p3.component';
@@ -87,6 +88,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
     SystemP4Component,
     ClinicP6Component,
     StockComponent,
+    StockP0Component,
     StockP1Component,
     StockP2Component,
     StockP3Component,
@@ -151,11 +153,20 @@ import { LoginUserComponent } from './login-user/login-user.component';
         path: 'stock',
         component: StockComponent,
         children: [
+          { path: 'st0', component: StockP0Component, outlet: 'c2',
+          children: [
+            { path: 't1', component: StockP1Component, outlet: 'c3' },
+            { path: 't2', component: StockP2Component, outlet: 'c3' },
+            { path: 't3', component: StockP3Component, outlet: 'c3' },
+            { path: '', component: StockP1Component, outlet: 'c3' },
+            { path: '**', component: ClinicM1Component, outlet: 'c3' }
+          ]
+         },
           { path: 'st1', component: StockP1Component, outlet: 'c2' },
           { path: 'st2', component: StockP2Component, outlet: 'c2' },
           { path: 'st3', component: StockP3Component, outlet: 'c2' },
           { path: 'st4', component: StockP4Component, outlet: 'c2' },
-          { path: '', component: StockP1Component, outlet: 'c2' },
+          { path: '', component: StockP0Component, outlet: 'c2' },
           { path: '**', component: StockP1Component, outlet: 'c2' }
         ]
       },
