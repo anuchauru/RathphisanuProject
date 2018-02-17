@@ -15,7 +15,9 @@ export class StockP2Component implements OnInit {
   data_msg: any; // msg
   data_unit: any; // ข้อมูลหน่วย
   data_array: any; // ข้อมูลarray
+  data_bill: any;
   array: any;
+  data: any;
   id_bill: any; // รหัสคำสั่งซื้อ
   id_medicine = ''; // รหัสยา
   id_unit = ''; // รหัสหน่วย
@@ -31,8 +33,13 @@ export class StockP2Component implements OnInit {
       (txtdata) => this.data_unit = txtdata
     );
     this.sts.get_id_bill().subscribe(
-      (txtdata) => this.id_bill = txtdata
+      (txtdata) => this.data_bill = txtdata,
+      (error) => alert(error),
+      () => {
+       this.id_bill = this.data_bill;
+      }
     );
+    console.log(this.data_bill);
     this.array = [];
   }
 
@@ -56,7 +63,17 @@ export class StockP2Component implements OnInit {
   my_medicine(txt) {
     console.log(txt);
   }
-
+  add_page1(data: any) {
+    this.sts.post_order(data).subscribe(
+      (txtdata) => this.data_bill = txtdata,
+      (error) => alert(error),
+      () => {
+        this.sts.post_order_array(this.array).subscribe(
+          (txtdata) => this.data = txtdata
+        );
+      }
+    );
+  }
   add_array(data: any){
     this.sts.get_medicine_array(data).subscribe(
       (txtdata) => this.data_array = txtdata,
