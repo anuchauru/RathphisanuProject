@@ -1,7 +1,33 @@
-<div class="menubar">
-  <h2 class="h_text"><font color="White">เวชระเบียน</font></h2>
-  <h5><font color="White">Medical record > Dashboard</font></h5>
-</div>
-<div class="page">
-  
-</div>
+<span *ngIf='if_text=="table"'>
+  <div class="menubar">
+    <h2 class="h_text">
+      <font color="White">รายชื่อ</font>
+    </h2>
+    <h5>
+      <font color="White">Medical record > Dashboard</font>
+    </h5>
+  </div>
+  <div class="page">
+    <!-- <button (click)="myinsert()" type="button" class="btn btn-primary r">
+          เพิ่มประวัติผู้ป่วย
+        </button> -->
+    <table class="table table-striped table-bordered table-hover" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ชื่อ - นามสกุล</th>
+          <th scope="col">ข้อมูลผู้ป่วย</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data; let n = index">
+          <th scope="row">{{n+1}}</th>
+          <td>{{i.name_ph}} {{i.lastname_ph}}</td>
+          <td>
+            <button (click)="myPatient(i.id_screening)" type="button">ข้อมูลผู้ป่วย</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</span>
