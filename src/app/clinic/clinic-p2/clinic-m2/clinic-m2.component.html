@@ -31,15 +31,20 @@
             </tbody>
         </table>
     </div>
+    <button (click)="my_cancel()" class="btn btn-primary butom" >ซักประวัติ</button>
+    <button (click)="my_click();" class="btn btn-primary butom">ข้อมูลเวชระเบียน</button>
+    <button (click)="my_click();" class="btn btn-primary butom">ข้อมูลการรักษา</button>
+    <br><br>
+    
     <div *ngIf='if_text=="form"'>
         <span [className]="my_Class">
             <div class="card">
                 <div class="card-header">
-                    ข้อมูลส่วนตัว
+                    ซักประวัติ
                 </div>
                 <div class="card-body">
-                    <p>นาย {{name_ph}} {{lastname_ph}}
-                        <button (click)="my_click();">ข้อมูลเวชระเบียน</button>
+                    <p>นาย {{name_ph}} {{lastname_ph}}<br>
+                        
                     </p>
                     <form #ScreeningForm='ngForm' (ngSubmit)="submit(ScreeningForm.value);">
                         <div class="row">
