@@ -43,7 +43,6 @@ export class ClinicM2Component implements OnInit {
 
   data_pername: any;
   data_province: any;
-  data_rooms: any;
   data_tb_occupation: any;
   data_tb_ethnicity: any;
   data_tb_nationality: any;
@@ -115,12 +114,6 @@ export class ClinicM2Component implements OnInit {
         );
         this.clsv.getprovince().subscribe(
           (txtdata) => this.data_province = txtdata
-        );
-        this.clsv.getrooms().subscribe(
-          (txtdata) => {
-            this.data_rooms = txtdata;
-            console.log(this.data_rooms);
-          }
         );
         this.clsv.gettb_occupation().subscribe(
           (txtdata) => this.data_tb_occupation = txtdata
