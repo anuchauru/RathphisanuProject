@@ -60,7 +60,7 @@ export class ClinicserviceService {
   // ห้องตรวจ
   query_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/clinic/query_tb_screening.php';
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   // คิวรี่
   getph(): Observable<history[]> {
@@ -143,6 +143,14 @@ export class ClinicserviceService {
 
   // ห้องตรวจ
   get_tb_screening_cli(): Observable<any> {
+    return this.http.get<any>(this.query_tb_screening);
+  }
+  // ห้องยา
+  get_tb_screening_med(): Observable<any> {
+    return this.http.get<any>(this.query_tb_screening);
+  }
+  // ห้องฟิตเน็ต
+  get_tb_screening_fin(): Observable<any> {
     return this.http.get<any>(this.query_tb_screening);
   }
 }
