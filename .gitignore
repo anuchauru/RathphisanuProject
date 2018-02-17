@@ -41,3 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 /nbproject/private/
+src/app/clinic/clinic-p2/clinic-m1/clinic-m1.component.html
