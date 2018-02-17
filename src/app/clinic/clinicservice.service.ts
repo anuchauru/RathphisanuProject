@@ -124,6 +124,7 @@ export class ClinicserviceService {
   }
 
   postScreening(str: any): Observable<any> {
+    console.log('ส่งคัดกรอง');
     return this.http.post<any>(this.urlAPi_Screening, str);
   }
   postEph(id_text: any): Observable<any> {
