@@ -54,6 +54,10 @@ export class ClinicserviceService {
   del_tb_allergys = 'http://202.29.52.61/~hosdb/otom/query/del_tb_allergys.php';
   ph_query_num = 'http://202.29.52.61/~hosdb/otom/query/ph_query_num.php';
 
+
+  // ห้องตรวจ
+  query_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/clinic/query_tb_screening.php';
+
   constructor( private http: HttpClient) { }
 
   // คิวรี่
@@ -127,7 +131,11 @@ export class ClinicserviceService {
   // postEdit(id: number): Observable<any> {
   //   return this.http.post<any>(this.urlAPi_in, {id: id});
   // } ส่งข้อมูลแค่ id อย่างเดียว
-
+  
+  // ห้องตรวจ
+  get_tb_screening_cli(): Observable<any> {
+    return this.http.get<any>(this.query_tb_screening);
+  }
 }
 
 

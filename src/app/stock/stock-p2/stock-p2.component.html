@@ -9,143 +9,172 @@
 
 <div class="page">
 
-    <span *ngIf="if_txt=='page1'">
-      <div class="card">
-        <div class="card-header">
-          ใบรับยาและเวชภัณฑ์
-        </div>
-        <div class="card-body">
-          <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
-            <div class="row">
-              <div class="col-md-2">
-                <label for="n_ph">เลขที่รับ</label>
-                <input [(ngModel)]='id_bill' ngModel type="text" name="name_ph" class="form-control" id="name_ph">
-              </div>
-              <div class="col-md-5">
-                <label for="name_ph">เลขที่ใบรับ</label>
-                <input [(ngModel)]='num_bill' ngModel type="text" name="name_ph" class="form-control" id="name_ph">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <label for="birthday">วันที่รับ</label>
-                <input type="date" [(ngModel)]='order_bill' ngModel name="birthday" class="form-control" id="birthday">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button type="button" class="btn btn-primary" (click)="my_add()">+ รายละเอียดยาและเวชภัณฑ์</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
-              </div>
-            </div>
-            <input type="text" [(ngModel)]='id_bill' ngModel name="id_bill">
-          </form>
-        </div>
+  <span *ngIf="if_txt=='page1'">
+    <div class="card">
+      <div class="card-header">
+        ใบรับยาและเวชภัณฑ์
       </div>
-    </span>
-    <span *ngIf="if_txt=='page2'">
-      <div class="card">
-        <div class="card-header">
-          รายละเอียดยาและเวชภัณฑ์
-        </div>
-        <div class="card-body">
-          <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
-            <div class="row">
-              <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
-              <div class="col-md-2">
-                <select class="form-control" [(ngModel)]='id_medicine' name="id_medicine">
-                  <option selected="selected" value="">กรุณาเลือก</option>
-                  <option *ngFor="let i of data_medicine;" value="{{i.id_medicine}}">{{i.n_medicine}}</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <button (click)="my_add_new()" type="button" class="btn btn-primary r">
-                  เพิ่มข้อมูลยา
-                </button>
-              </div>
+      <div class="card-body">
+        <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="n_ph">เลขที่รับ</label>
+              <input [(ngModel)]='id_bill' ngModel type="text" name="id_bill" class="form-control">
             </div>
-            <div class="row">
-              <div class="text-left">จำนวนรับ</div>
-              <div class="col-md-2">
-                <input type="number" #c1='ngModel' ngModel  name="birthday" class="form-control" id="birthday">
-              </div>
-              <!-- <div class="text-left">หน่วยบรรจุ</div>
+            <div class="col-md-5">
+              <label for="name_ph">เลขที่ใบรับ</label>
+              <input #c2='ngModel' ngModel type="text" name="num_bill" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="birthday">วันที่รับ</label>
+              <input type="date" #c3='ngModel' ngModel name="order_bill" class="form-control" id="birthday">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary" (click)="my_add()">+ รายละเอียดยาและเวชภัณฑ์</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">รหัสยา</th>
+                    <th scope="col">ชื่อยา</th>
+                    <th scope="col">จำนวน</th>
+                    <th scope="col">หน่วย</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of array; let n=index; ">
+                    <td>{{n+1}}</td>
+                    <td>{{i.code_medicine}}</td>
+                    <td>{{i.n_medicine}}</td>
+                    <td>{{i.amount}}</td>
+                    <td>{{i.n_unit}}</td>
+                    <td>
+                      <button type="button" (click)="remove(i)">ลบ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </span>
+  <span *ngIf="if_txt=='page2'">
+    <div class="card">
+      <div class="card-header">
+        รายละเอียดยาและเวชภัณฑ์
+      </div>
+      <div class="card-body">
+        <form #array='ngForm' (ngSubmit)="add_array(array.value);">
+          <div class="row">
+            <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
+            <div class="col-md-2">
+              <select class="form-control" [(ngModel)]='id_medicine' name="id_medicine" (change)="my_medicine(id_medicine)">
+                <option selected="selected" value="">กรุณาเลือก</option>
+                <option *ngFor="let i of data_medicine;" value="{{i.id_medicine}}">{{i.n_medicine}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button (click)="my_add_new()" type="button" class="btn btn-primary r">
+                เพิ่มข้อมูลยา
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-left">จำนวนรับ</div>
+            <div class="col-md-2">
+              <input type="number" #c1='ngModel' ngModel name="amount" class="form-control" id="birthday">
+            </div>
+            <!-- <div class="text-left">หน่วยบรรจุ</div>
               <div class="col-md-2">
                 <input type="number" #c2='ngModel' ngModel  name="birthday" class="form-control" id="birthday">
               </div> -->
-              <!-- <div class="text-left">ราคาต่อหน่วย</div>
+            <!-- <div class="text-left">ราคาต่อหน่วย</div>
               <div class="col-md-2">
                 <input type="number" #c3='ngModel' ngModel  name="birthday" class="form-control" id="birthday">
               </div> -->
-              
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">บันทึก</button>
+              <button (click)="my_cancen_add()" type="button" class="btn btn-primary">ยกเลิก</button>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button (click)="myinsert()" type="button" class="btn btn-primary">บันทึก</button>
-                <button (click)="my_cancen_add()" type="button" class="btn btn-primary">ยกเลิก</button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+          <input type="text" [(ngModel)]='id_bill' ngModel name="id_bill">
+        </form>
       </div>
-    </span>
-    <span *ngIf="if_txt=='page3'">
-      <div class="card">
-        <div class="card-header">
-          รายละเอียดยาและเวชภัณฑ์
-        </div>
-        <div class="card-body">
-          <form #medicine='ngForm' (ngSubmit)="insert_medicine(medicine.value);">
-            <div class="row">
-              <div class="text-left">รหัสยาและเวชภัณฑ์</div>
-              <div class="col-md-2">
-                <input type="text" #c1='ngModel' ngModel name="code_medicine" class="form-control">
-              </div>
-              <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
-              <div class="col-md-2">
-                <input type="text" #c2='ngModel' ngModel name="n_medicine" class="form-control">
-              </div>
-            </div>
-            <div class="row">
-              <div class="text-left">หน่วย</div>
-              <div class="col-md-2">
-                <select class="form-control" [(ngModel)]='id_unit' name="id_unit" id="n_ph">
-                  <option selected="selected" value="">กรุณาเลือก</option>
-                  <option *ngFor="let i of data_unit;" value="{{i.id_unit}}">{{i.n_unit}}</option>
-                </select>
-              </div>
-              <div class="text-left">ราคาต่อหน่วย</div>
-              <div class="col-md-2">
-                <input type="number" #c4='ngModel' ngModel name="price" class="form-control">
-              </div>
-              <div class="text-left">บาท</div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">สรรพคุณ</div>
-              <div class="col-md-4">
-                <textarea class="form-control" #c5='ngModel' ngModel name="properties" rows="5"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">คำเตือน</div>
-              <div class="col-md-4">
-                <textarea class="form-control" #c6='ngModel' ngModel name="caution" rows="5"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button type="sunmit" class="btn btn-primary">บันทึก</button>
-                <button (click)="my_cancen_add_new()" type="button" class="btn btn-primary">ยกเลิก</button>
-              </div>
-            </div>
-          </form>
-        </div>
+    </div>
+  </span>
+  <span *ngIf="if_txt=='page3'">
+    <div class="card">
+      <div class="card-header">
+        รายละเอียดยาและเวชภัณฑ์
       </div>
-    </span>
+      <div class="card-body">
+        <form #medicine='ngForm' (ngSubmit)="insert_medicine(medicine.value);">
+          <div class="row">
+            <div class="text-left">รหัสยาและเวชภัณฑ์</div>
+            <div class="col-md-2">
+              <input type="text" #c1='ngModel' ngModel name="code_medicine" class="form-control">
+            </div>
+            <div class="text-left">ชื่อยาและเวชภัณฑ์</div>
+            <div class="col-md-2">
+              <input type="text" #c2='ngModel' ngModel name="n_medicine" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-left">หน่วย</div>
+            <div class="col-md-2">
+              <select class="form-control" [(ngModel)]='id_unit' name="id_unit" id="n_ph">
+                <option selected="selected" value="">กรุณาเลือก</option>
+                <option *ngFor="let i of data_unit;" value="{{i.id_unit}}">{{i.n_unit}}</option>
+              </select>
+            </div>
+            <div class="text-left">ราคาต่อหน่วย</div>
+            <div class="col-md-2">
+              <input type="number" #c4='ngModel' ngModel name="price" class="form-control">
+            </div>
+            <div class="text-left">บาท</div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">สรรพคุณ</div>
+            <div class="col-md-4">
+              <textarea class="form-control" #c5='ngModel' ngModel name="properties" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">คำเตือน</div>
+            <div class="col-md-4">
+              <textarea class="form-control" #c6='ngModel' ngModel name="caution" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="sunmit" class="btn btn-primary">บันทึก</button>
+              <button (click)="my_cancen_add_new()" type="button" class="btn btn-primary">ยกเลิก</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </span>
 
 
 </div>
