@@ -11,4 +11,6 @@
     display: '';
 }.hide{
     display: none;
+}.r{
+    float: right;
 }
