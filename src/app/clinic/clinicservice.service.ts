@@ -129,14 +129,16 @@ export class ClinicserviceService {
   }
   postEph(id_text: any): Observable<any> {
     return this.http.post<any>(this.urlAPi_in, id_text);
-  }//ส่งเป็นชุดข้อมูล
+  }
+  // ส่งเป็นชุดข้อมูล
   postdelete(id_text: any): Observable<any> {
     return this.http.post<any>(this.urlAPi_in, id_text);
-  }//ส่งเป็นชุดข้อมูล
+  }
+  // ส่งเป็นชุดข้อมูล
   // postEdit(id: number): Observable<any> {
   //   return this.http.post<any>(this.urlAPi_in, {id: id});
   // } ส่งข้อมูลแค่ id อย่างเดียว
-  
+
   // ห้องตรวจ
   get_tb_screening_cli(): Observable<any> {
     return this.http.get<any>(this.query_tb_screening);
