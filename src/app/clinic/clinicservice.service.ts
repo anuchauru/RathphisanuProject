@@ -35,6 +35,7 @@ export class ClinicserviceService {
   urlAPi = 'http://202.29.52.61/~hosdb/otom/query/ph_query.php';
   urlAPi_pername = 'http://202.29.52.61/~hosdb/otom/query/query_pername.php';
   urlAPi_province = 'http://202.29.52.61/~hosdb/otom/query/query_province.php';
+  urlAPi_room = 'http://202.29.52.61/~hosdb/otom/query/query_rooms.php';
   urlAPi_amphures = 'http://202.29.52.61/~hosdb/otom/query/query_amphures.php';
   urlAPi_district = 'http://202.29.52.61/~hosdb/otom/query/query_district.php';
   urlAPi_tb_occupation = 'http://202.29.52.61/~hosdb/otom/query/query_tb_occupation.php';
@@ -72,6 +73,9 @@ export class ClinicserviceService {
   }
   getprovince(): Observable<any> {
     return this.http.get<any>(this.urlAPi_province);
+  }
+  getrooms(): Observable<any> {
+    return this.http.get<any>(this.urlAPi_room);
   }
   postamphures(str: any): Observable<any> {
     return this.http.post<any>(this.urlAPi_amphures, str);

@@ -24,7 +24,7 @@
                 <tr *ngFor="let i of data_ph; let n = index">
                     <th scope="row">{{n+1}}</th>
                     <td>{{i.name_ph}} {{i.lastname_ph}}</td>
-                    <td>{{i.last_update}}</td> 
+                    <td>{{i.last_update}}</td>
                     <td width='1%'>
                         <button class="btn btn-primary" *ngIf='i.status==0' (click)="myPatient(i.id_screening)" type="button">ซักประวัติผู้ป่วย</button>
                         <button class="btn btn-success" *ngIf='i.status!=0' (click)="my_hit(i.id_screening)" type="button">ส่งตรวจแล้ว</button>
@@ -33,11 +33,12 @@
             </tbody>
         </table>
     </div>
-    <button (click)="my_cancel()" class="btn btn-primary butom" >ซักประวัติ</button>
+    <button (click)="my_cancel()" class="btn btn-primary butom">ซักประวัติ</button>
     <button (click)="my_click();" class="btn btn-primary butom">ข้อมูลเวชระเบียน</button>
     <button (click)="my_click();" class="btn btn-primary butom">ข้อมูลการรักษา</button>
-    <br><br>
-    
+    <br>
+    <br>
+
     <div *ngIf='if_text=="form"'>
         <span [className]="my_Class">
             <div class="card">
@@ -45,8 +46,9 @@
                     ซักประวัติ
                 </div>
                 <div class="card-body">
-                    <p>นาย {{name_ph}} {{lastname_ph}}<br>
-                        
+                    <p>นาย {{name_ph}} {{lastname_ph}}
+                        <br>
+
                     </p>
                     <form #ScreeningForm='ngForm' (ngSubmit)="submit(ScreeningForm.value);">
                         <div class="row">
@@ -78,10 +80,9 @@
                             </div>
                             <div class="text-left">ห้องตรวจ</div>
                             <div class="col-md-3">
-                                <select class="form-control" [(ngModel)]='u5' name="id_room" ngModel>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                <select class="form-control" [(ngModel)]="u5" name="id_room" id="id_room">
+                                    <option value="">กรุณาเลือก</option>
+                                    <option *ngFor="let i of data_rooms;" value="{{i.idrooms}}">{{i.roomsname}}</option>
                                 </select>
                             </div>
                         </div>
