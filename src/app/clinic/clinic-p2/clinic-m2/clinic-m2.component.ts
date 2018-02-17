@@ -91,9 +91,16 @@ export class ClinicM2Component implements OnInit {
       mm: 'query'
      };
     this.clsv.postScreening(this.id_text).subscribe(
-      (txtdata) => this.postdata = txtdata,
-      (error) => alert(error),
+      (txtdata) => {
+        console.log('Post completed');
+          this.postdata = txtdata;
+      },
+      (error) => {
+        console.log(error);
+          
+      },
       () => {
+        console.log('Come back');
         this.u1 = this.postdata['0'];
         this.u2 = this.postdata['1'];
         this.u3 = '';
