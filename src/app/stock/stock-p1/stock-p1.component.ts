@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StockseriveService } from '../stockserive.service';
-import { error } from 'selenium-webdriver';
 @Component({
   selector: 'app-stock-p1',
   templateUrl: './stock-p1.component.html',
@@ -13,7 +12,7 @@ export class StockP1Component implements OnInit {
   constructor( private ssv: StockseriveService) { }
 
   ngOnInit() {
-    this.ssv.get_tb_stock_medicine().subscribe(
+    this.ssv.get_tb_medicine().subscribe(
       (txtdata) => this.data = txtdata
     );
 
