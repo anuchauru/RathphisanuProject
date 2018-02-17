@@ -6,12 +6,12 @@ import { Observable } from 'rxjs/Observable';
 export class StockseriveService {
   // xampp
   // คิวรี่
-  query_tb_medicine = 'http://localhost/otom/query/query_tb_medicine.php';
-  query_tb_unit = 'http://localhost/otom/query/query_tb_unit.php';
-  query_id_bill = 'http://localhost/otom/query/query_id_bill.php';
+  query_tb_medicine = 'http://202.29.52.61/~hosdb/otom/query/query_tb_medicine.php';
+  query_tb_unit = 'http://202.29.52.61/~hosdb/otom/query/query_tb_unit.php';
+  query_id_bill = 'http://202.29.52.61/~hosdb/otom/query/query_id_bill.php';
 
   // insert
-  insert_medicine = 'http://localhost/otom/query/stock_medicine/insert_medicine.php';
+  insert_medicine = 'http://202.29.52.61/~hosdb/otom/query/stock_medicine/insert_medicine.php';
 
   constructor(private http: HttpClient) { }
   // คิวรี่
