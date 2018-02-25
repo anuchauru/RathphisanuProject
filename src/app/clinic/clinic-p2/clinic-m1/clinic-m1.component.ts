@@ -83,11 +83,16 @@ export class ClinicM1Component implements OnInit {
   Per_Page = 5;
   Num_Pages: any;
   pstatus: any;
-  
+  count_ar = [];
+  page_txt: any;
 
   constructor(private clsv: ClinicserviceService, private token: LoginService) {
     this.pstatus = this.clsv.pstatus;
-    this.clsv.getph().subscribe(
+    this.page_txt = {
+      num_page: 1,
+      num_list: this.Per_Page
+    };
+    this.clsv.getph(this.page_txt).subscribe(
       (txtdata) => this.data_ph = txtdata
     );
     this.clsv.get_num_row().subscribe(
@@ -102,14 +107,10 @@ export class ClinicM1Component implements OnInit {
           this.Num_Pages = (this.num_row / this.Per_Page) + 1;
           this.Num_Pages = Math.floor(this.Num_Pages);
         }
-        // console.log(this.Num_Pages);
-        // this.Num_Pages = 2;
-        // this.Num_Pages.forEach((i) => {
-        // });
-
-        // for (let i = 0; i < this.Num_Pages ; i++) {
-        //   console.log(i);
-        // }
+        for (let i = 0; i < this.Num_Pages; i++) {
+          this.count_ar.push(i);
+        }
+        console.log(this.count_ar);
       }
     );
   }
@@ -119,6 +120,46 @@ export class ClinicM1Component implements OnInit {
     this.if_text = 'table';
     this.data = JSON.parse(sessionStorage.getItem('data'));
     this.Allergys = [];
+  }
+  // จำนวนแสดง
+  num_page(p: any) {
+    this.page_txt = {
+      num_page: 1,
+      num_list: p
+    };
+    this.count_ar = [];
+    this.clsv.getph_page(this.page_txt).subscribe(
+      (txtdata) => this.data_ph = txtdata
+    );
+    this.clsv.get_num_row().subscribe(
+      (txtdata) => this.num_row = txtdata,
+      (error) => alert(error),
+      () => {
+        if (this.num_row <= this.Per_Page) {
+          this.Num_Pages = 1;
+        } else if ((this.num_row % this.Per_Page) == 0) {
+          this.Num_Pages = (this.num_row / this.Per_Page);
+        } else {
+          this.Num_Pages = (this.num_row / this.Per_Page) + 1;
+          this.Num_Pages = Math.floor(this.Num_Pages);
+        }
+        for (let i = 0; i < this.Num_Pages; i++) {
+          this.count_ar.push(i);
+        }
+      }
+    );
+  }
+
+  // เลือกหน้า
+  selete_page(id: any) {
+    this.page_txt = {
+      num_page: id,
+      num_list: this.Per_Page
+    };
+    this.clsv.getph_page(this.page_txt).subscribe(
+      (txtdata) => this.data_ph = txtdata
+    );
+    console.log(id);
   }
 
   // เรียกฟอรฺ์มข้อมูลผู้ป่วย
@@ -263,6 +304,10 @@ export class ClinicM1Component implements OnInit {
 
   // เพิ่มข้อมูลผู้ป่วย
   submit(txform: any) {
+    this.page_txt = {
+      num_page: 1,
+      num_list: this.Per_Page
+    };
     this.txt = {
       token: this.data.token,
       m_id: this.data.m_id
@@ -299,7 +344,7 @@ export class ClinicM1Component implements OnInit {
             () => {
               this.clsv.postarray(this.Allergys).subscribe(
                 () => {
-                  this.clsv.getph().subscribe((txtdata) => this.data_ph = txtdata);
+                  this.clsv.getph(this.page_txt).subscribe((txtdata) => this.data_ph = txtdata);
                 }
               );
             }
@@ -496,6 +541,10 @@ export class ClinicM1Component implements OnInit {
 
   // ลบ
   mydelete(id: any) {
+    this.page_txt = {
+      num_page: 1,
+      num_list: this.Per_Page
+    };
     this.id_text = {
       id_ph: id,
       mm_delete: 'mm_delete'
@@ -504,7 +553,7 @@ export class ClinicM1Component implements OnInit {
       (data) => this.postdelete = data,
       (error) => alert(error),
       () => {
-        this.clsv.getph().subscribe(
+        this.clsv.getph(this.page_txt).subscribe(
           (txtdata) => this.data_ph = txtdata,
           (error) => alert(error)
         );

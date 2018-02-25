@@ -10,6 +10,7 @@ export class ClinicserviceService {
   // urlAPi = 'http://localhost/otom/query/ph_query.php';
   // urlAPi_pername = 'http://localhost/otom/query/query_pername.php';
   // urlAPi_province = 'http://localhost/otom/query/query_province.php';
+  // urlAPi_room = 'http://localhost/otom/query/query_rooms.php';
   // urlAPi_amphures = 'http://localhost/otom/query/query_amphures.php';
   // urlAPi_district = 'http://localhost/otom/query/query_district.php';
   // urlAPi_tb_occupation = 'http://localhost/otom/query/query_tb_occupation.php';
@@ -18,16 +19,14 @@ export class ClinicserviceService {
   // urlAPi_tb_religion = 'http://localhost/otom/query/query_tb_religion.php';
   // urlAPi_in_arr = 'http://localhost/otom/query/in_allergys.php';
   // urlAPi_id = 'http://localhost/otom/query/ph_query_id.php';
-  // urlAPi_report_allergys = 'http://localhost/otom/query/query_report_allergys.php';
+  // urlAPi_report_allergys = 'http://localhost/otom/query//query_report_allergys.php';
   // urlAPi_tb_medicine = 'http://localhost/otom/query/query_tb_medicine.php';
   // query_tb_allergys = 'http://localhost/otom/query/query_allergys.php';
   // urlAPi_tb_screening = 'http://localhost/otom/query/tb_screening_query.php';
   // urlAPi_tb_send_check = 'http://localhost/otom/query/tb_send_check_query.php';
   // urlAPi_in = 'http://localhost/otom/query/ph_in_edit_del.php';
   // urlAPi_Screening = 'http://localhost/otom/query/tb_screening_in_edit_del.php';
-  // urlAPi_test = 'http://localhost/otom/query/test.php';
-
-  // new
+  // urlAPi_test = 'http://localhost/otom/query/member_test.php';
   // del_tb_allergys = 'http://localhost/otom/query/del_tb_allergys.php';
   // ph_query_num = 'http://localhost/otom/query/ph_query_num.php';
 
@@ -63,8 +62,11 @@ export class ClinicserviceService {
   constructor(private http: HttpClient) { }
 
   // คิวรี่
-  getph(): Observable<history[]> {
-    return this.http.get<history[]>(this.urlAPi);
+  getph(page: any): Observable<history[]> {
+    return this.http.post<history[]>(this.urlAPi, page);
+  }
+  getph_page(id: any): Observable<history[]> {
+    return this.http.post<history[]>(this.urlAPi, id);
   }
   get_num_row(): Observable<any> {
     return this.http.get<any>(this.ph_query_num);
