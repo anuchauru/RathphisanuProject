@@ -1,0 +1,1326 @@
+<span *ngIf='if_text=="table"'>
+  <div class="menubar">
+    <h2 class="h_text">
+      <font color="White">คิวห้องตรวจระบบประสาททางสมอง</font>
+    </h2>
+    <h5>
+      <font color="White">Medical record > Dashboard</font>
+    </h5>
+  </div>
+  <div class="page">
+    <!-- <button (click)="myinsert()" type="button" class="btn btn-primary r">
+          เพิ่มประวัติผู้ป่วย
+        </button> -->
+    <table class="table table-striped table-bordered table-hover" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ชื่อ - นามสกุล</th>
+          <th scope="col">เวลา</th>
+          <th scope="col">ข้อมูลผู้ป่วย</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data_ph; let n = index">
+          <th scope="row">{{n+1}}</th>
+          <td>{{i.name_ph}} {{i.lastname_ph}}</td>
+          <td></td>
+          <td>
+            <button (click)="myPatient(i.id_screening)" type="button" class="btn btn-primary">ข้อมูลผู้ป่วย</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</span>
+
+<span *ngIf='if_text=="form"'>
+  <div class="menubar">
+    <h2 class="h_text">
+      <font color="White">ประวัติผู้ป่วย</font>
+    </h2>
+  </div>
+  <div class="page">
+    <span [className]='page1'>
+      <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+        <ul class="nav navbar-nav">
+          <li class="nav-item homeMenu" style="vertical-align:top;">
+            <a class=" topMenu1 noSpace1 activel" (click)="my_page1()">
+              <div class="txt_manu_l">
+                ข้อมูลผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1" (click)="my_page2()">
+              <div class="txt_manu_l">
+                แบบประเมินผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page3()">
+              <div class="txt_manu_l">
+                Medication
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page4()">
+              <div class="txt_manu_l">
+                หัตถการ
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page5()">
+              <div class="txt_manu_l">
+                การนัดหมาย
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          ข้อมูลส่วนตัว
+        </div>
+        <div class="card-body">
+          <form #editform='ngForm' (ngSubmit)="edit(editform.value);">
+            <div class="row">
+              <div class="col-md-2">
+                <label for="n_ph">คำนำหน้า</label>
+                <select class="form-control" [(ngModel)]='PRENAMEID' name="PRENAME_ID" id="n_ph" disabled>
+                  <option selected="selected" value="">คุณ</option>
+                  <option *ngFor="let i of data_pername;" value="{{i.PRENAME_ID}}">{{i.PRENAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-5">
+                <label for="name_ph">ชื่อ</label>
+                <input [(ngModel)]='name_ph' ngModel type="text" name="name_ph" class="form-control" id="name_ph" readonly>
+              </div>
+              <div class="col-md-5">
+                <label for="lastname_ph">นามสกุล</label>
+                <input [(ngModel)]='lastname_ph' ngModel type="text" name="lastname_ph" class="form-control" id="lastname_ph" readonly>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="birthday">วันเกิด</label>
+                <input type="date" [(ngModel)]='birthday' ngModel name="birthday" class="form-control" id="birthday" readonly="">
+              </div>
+              <div class="col-md-4">
+                <label for="time_birthday">เวลาเกิด</label>
+                <input type="time" [(ngModel)]='time_birthday' ngModel name="time_birthday" class="form-control" id="time_birthday" readonly="">
+              </div>
+              <div class="col-md-4">
+                <label for="sex_ph">เพศ</label>
+                <select class="form-control" [(ngModel)]='sex_ph' ngModel name="sex_ph" id="sex_ph" readonly="" disabled>
+                  <option value="m">ชาย</option>
+                  <option value="f">หญิง</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <label for="no">บ้านเลขที่</label>
+                <input type="text" class="form-control" [(ngModel)]='no' ngModel name="no" id="no" readonly="">
+              </div>
+              <div class="col-md-1">
+                <label for="moo">หมู่</label>
+                <input type="text" class="form-control" [(ngModel)]='moo' ngModel name="moo" id="moo" readonly="">
+              </div>
+              <div class="col-md-6">
+                <label for="road">ถนน</label>
+                <input type="text" class="form-control" [(ngModel)]='road' ngModel name="road" id="road" readonly="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="PROVINCE_ID">จังหวัด</label>
+                <select class="form-control" [(ngModel)]="PROVINCE_ID" name="PROVINCE_ID" id="PROVINCE_ID" (change)="my_amphures(PROVINCE_ID)"
+                  readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_province;" value="{{i.PROVINCE_ID}}">{{i.PROVINCE_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="AMPHUR_ID">อำเภอ</label>
+                <select class="form-control" [(ngModel)]="AMPHUR_ID" name="AMPHUR_ID" id="AMPHUR_ID" (change)="my_district(AMPHUR_ID)" readonly=""
+                  disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_getamphures;" value="{{i.AMPHUR_ID}}">{{i.AMPHUR_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="DISTRICT_ID">ตำบล</label>
+                <select class="form-control" [(ngModel)]="DISTRICT_ID" name="DISTRICT_ID" id="DISTRICT_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_district;" value="{{i.DISTRICT_ID}}">{{i.DISTRICT_NAME}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="OCCUPATION_ID">อาชีพ</label>
+                <select class="form-control" [(ngModel)]='OCCUPATION_ID' ngModel name="OCCUPATION_ID" id="OCCUPATION_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_occupation;" value="{{i.OCCUPATION_ID}}">{{i.OCCUPATION_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="tel">โทรศัพท์</label>
+                <input [(ngModel)]='tel_ph' ngModel name="tel_ph" class="form-control" id="tel" readonly="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="ETHNICITYE_ID">เชื้อชาติ</label>
+                <select class="form-control" [(ngModel)]='ETHNICITYE_ID' ngModel name="ETHNICITYE_ID" id="ETHNICITYE_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_ethnicity;" value="{{i.ETHNICITYE_ID}}">{{i.ETHNICITY_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="NATIONALITY_ID">สัญชาติ</label>
+                <select class="form-control" [(ngModel)]='NATIONALITY_ID' ngModel name="NATIONALITY_ID" id="NATIONALITY_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_nationality;" value="{{i.NATIONALITY_ID}}">{{i.NATIONALITY_NAME}}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="RELIGION_ID">ศาสนา</label>
+                <select class="form-control" [(ngModel)]='RELIGION_ID' ngModel name="RELIGION_ID" id="RELIGION_ID" readonly="" disabled>
+                  <option value="">กรุณาเลือก</option>
+                  <option *ngFor="let i of data_tb_religion;" value="{{i.RELIGION_ID}}">{{i.RELIGION_NAME}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table>
+                  <tr *ngFor="let i of data_allergys;">
+                    <td>{{'- '+i.n_medicine}}</td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </span>
+    <span [className]='page2'>
+      <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+        <ul class="nav navbar-nav">
+          <li class="nav-item homeMenu" style="vertical-align:top;">
+            <a class=" topMenu1 noSpace1" (click)="my_page1()">
+              <div class="txt_manu_l">
+                ข้อมูลผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1 activel" (click)="my_page2()">
+              <div class="txt_manu_l">
+                แบบประเมินผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page5()">
+              <div class="txt_manu_l">
+                การนัดหมาย
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page3()">
+              <div class="txt_manu_l">
+                Medication
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page4()">
+              <div class="txt_manu_l">
+                หัตถการ
+              </div>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          แบบประเมินผู้ป่วย
+        </div>
+        <form #heal1='ngForm' (ngSubmit)="insert_heal_1(heal1.value);">
+          <div class="card-body">
+            <div class="row">
+              <div class="text-left"><b>วันที่ปรึกษา</b></div>
+              <div class="col-md-2">
+                <input type="date" class="form-control" ngModel name="date_counsel">
+              </div>
+              <div class="text-left"><b>วันแรกที่รับ PT</b></div>
+              <div class="col-md-3">
+                <input type="date" class="form-control" ngModel name="first_day_pt">
+              </div>
+              <div class="text-left"><b>ข้อห้าม/ข้อควรระวัง</b></div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" ngModel name="prohibition">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" style="padding-left: 0px; padding-right: 0px;">
+                <div class="text-left">
+                  <b>Diagnosis:</b>
+                </div>
+                <div class="text-left">
+                  <input type="radio" name="diagnosis"  ngModel id="diagnosis-1" value="1">
+                  <label for="diagnosis-1">
+                    Brain tumor
+                  </label>
+                </div>
+                <div class="text-left">
+                  <input type="radio" name="diagnosis"  ngModel  id="TBI" value="2">
+                  <label for="TBI">
+                    TBI
+                  </label>
+                </div>
+                <div class="text-left">
+                  <input type="radio" name="diagnosis"  ngModel  id="CVA" value="3">
+                  <label for="CVA">
+                    CVA
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+                <div class="text-left">
+                  <b>Pathology:</b>
+                </div>
+                <div class="text-left">
+                  <input type="radio" name="pathology" ngModel id="Hemorrhage" value="1">
+                  <label for="Hemorrhage">
+                    Hemorrhage
+                  </label>
+                </div>
+                <div class="text-left">
+                  <input type="radio" name="pathology" ngModel id="Ischemic" value="2">
+                  <label for="Ischemic">
+                    Ischemic
+                  </label>
+                </div>
+                <div class="text-left">
+                  <b>U/D:</b>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" ngModel name="UD">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>PT diagnosis:</b>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ngModel name="pt_diagnosis">
+              </div>
+              <div class="text-left">
+                <b>ประวัติ:</b>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ngModel name="history">
+              </div>
+              <div class="text-left">
+                <b>Onset:</b>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ngModel name="onset">
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta" id="First_time" ngModel value="1">
+                <label for="First_time">
+                  First time
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta" id="Recurrent" ngModel value="2">
+                <label for="Recurrent">
+                  Recurrent
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>Physical Examination:</b>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" ngModel name="physical_examination">
+              </div>
+              <div class="text-left">
+                <b>Observation:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="observation" id="Craniotomy" ngModel value="1">
+                <label for="Craniotomy">
+                  Craniotomy
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="observation" id="Foley_s_catheter" ngModel value="2">
+                <label for="Foley_s_catheter">
+                  Foley's catheter
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="observation" id="NG_tube" ngModel value="3">
+                <label for="NG_tube">
+                  NG tube
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="observation" id="Tracheostomy_tube" ngModel value="4">
+                <label for="Tracheostomy_tube">
+                  Tracheostomy tube
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>Consciousness:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="consciousness" id="Alert" ngModel value="1">
+                <label for="Alert">
+                  Alert
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="consciousness" id="Drowsiness" ngModel value="2">
+                <label for="Drowsiness">
+                  Drowsiness
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="consciousness" id="Stupor" ngModel value="3">
+                <label for="Stupor">
+                  Stupor
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="consciousness" id="Semi_coma" ngModel value="4">
+                <label for="Semi_coma">
+                  Semi coma
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="consciousness" id="Coma" ngModel value="5">
+                <label for="Coma">
+                  Coma
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>Communication:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="communication" id="Good" ngModel value="1">
+                <label for="Good">
+                  Good
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="communication" id="Fair" ngModel value="2">
+                <label for="Fair">
+                  Fair
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="communication" id="Poor" ngModel value="3">
+                <label for="Poor">
+                  Poor
+                </label>
+              </div>
+              <div class="text-left">
+                <b>Edema:at</b>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="edema" ngModel>
+              </div>
+              <div class="text-left">
+                <b>Lung:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="lung" id="Normal" value="1" ngModel>
+                <label for="Normal">
+                  Normal
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="lung" id="Abnormal" value="2" ngModel>
+                <label for="Abnormal">
+                  Abnormal
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>ROM:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="rom" id="WNL" value="1" ngModel>
+                <label for="WNL">
+                  WNL
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="rom" id="Limit_ROM_at" value="2" ngModel>
+                <label for="Limit_ROM_at">
+                  Limit ROM at
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="limit_rom_at" value="" ngModel>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="rom" id="Join_contracture_at" value="option1" ngModel>
+                <label for="Join_contracture_at">
+                  Join contracture at
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="join_contracture_at" ngModel>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>Muscle length:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_length" id="Normal" value="1" ngModel>
+                <label for="Normal">
+                  Normal
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_length" id="tightness_of" value="2" ngModel>
+                <label for="tightness_of">
+                  Tightness of
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="tightness_of" ngModel>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_length" id="shortening_of" value="3" ngModel>
+                <label for="shortening_of">
+                  Shortening of
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="shortening_of" ngModel>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left">
+                <b>Muscle tone:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_tone" id="Normal" value="1" ngModel>
+                <label for="Normal">
+                  Normal
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_tone" id="flaccidity_of" value="2" ngModel>
+                <label for="flaccidity_of">
+                  Flaccidity of
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="flaccidity_of" ngModel>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_tone" id="hypotone_of" value="3" ngModel>
+                <label for="hypotone_of">
+                  Hypotone of
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="hypotone_of" ngModel>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="muscle_tone" id="hypertone_of" value="4" ngModel>
+                <label for="hypertone_of">
+                  Hypertone of
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" name="hypertone_of" ngModel>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="text-left">
+                <b>Functional Ability</b>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr style="height: 130px;">
+                      <th scope="col">
+                        <span class="textAlignVer">Function</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">N/A</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Dependent</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Maximat assist</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Moderate assist</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Minimal assist</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Contact guard</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Closed guard</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Supervision</span>
+                      </th>
+                      <th scope="col" class="width_5">
+                        <span class="textAlignVer">Independent</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Move up/doward/sideway to Rt/Lt</td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="1" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="2" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="3" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="4" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="5" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="6" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="7" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="8" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="9" name="functional_ability_1" ngModel>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Supine to sidelying</td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="1" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="2" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="3" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="4" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="5" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="6" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="7" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="8" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="9" name="functional_ability_2" ngModel>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Side lying to sitting</td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="1" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="2" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="3" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="4" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="5" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="6" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="7" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="8" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="9" name="functional_ability_3" ngModel>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>แก้ไข</td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="1" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="2" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="3" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="4" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="5" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="6" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="7" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="8" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="9" name="functional_ability_4" ngModel>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>แก้ไข</td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="1" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="2" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="3" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="4" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="5" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="6" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="7" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="8" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                      <td>
+                        <label class="label_table">
+                          <input type="radio" class="input_table" value="9" name="functional_ability_5" ngModel>
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="text-left">
+                <b>Problem:</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="problem" id="Muscle_weakness" value="1" ngModel>
+                <label for="Muscle_weakness">
+                  Muscle weakness
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="problem" id="Poor_balance" value="2" ngModel>
+                <label for="Poor_balance">
+                  Poor balance
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="problem" id="Poor_bed_mobility" value="3" ngModel>
+                <label for="Poor_bed_mobility">
+                  Poor bed mobility
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="problem" id="Poor_ambulation" value="4" ngModel>
+                <label for="Poor_ambulation">
+                  Poor ambulation
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="problem" id="poor_transfer" value="5" ngModel>
+                <label for="poor_transfer">
+                  Poor transfer
+                </label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Goal of treatment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="radio" name="goal_of_treatment" id="Improve_muscle_power" value="1" ngModel>
+                          <label for="Improve_muscle_power">
+                            Improve muscle power
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="radio" name="goal_of_treatment" id="Improve_bed_mobility" value="2" ngModel>
+                          <label for="Improve_bed_mobility">
+                            Improve bed mobility
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="radio" name="goal_of_treatment" id="Improve_balance" value="3" ngModel>
+                          <label for="Improve_balance">
+                            Improve balance
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="radio" name="goal_of_treatment" id="Improve_ambulation" value="4" ngModel>
+                          <label for="Improve_ambulation">
+                            Improve ambulation
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="radio" name="goal_of_treatment" id="Other" value="5" ngModel>
+                          <label for="Other">
+                            Other
+                          </label>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="text" name="other">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2">treatment plan(..../..../....)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_1" id="Hot_pack" value="1" ngModel>
+                          <label for="Hot_pack">
+                            Hot pack
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_2" id="Strengthening_exs" value="1" ngModel>
+                          <label for="Strengthening_exs">
+                            Strengthening exs.
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_3" id="Cold_pack" value="1" ngModel>
+                          <label for="Cold_pack">
+                            Cold pack
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_4" id="Stretching_exs" value="1" ngModel>
+                          <label for="Stretching_exs">
+                            Stretching exs.
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_5" id="US" value="1" ngModel>
+                          <label for="US">
+                            US
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_6" id="Balance_training" value="1" ngModel>
+                          <label for="Balance_training">
+                            Balance training
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_7" id="ES" value="1" ngModel>
+                          <label for="ES">
+                            ES/TENs
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_8" id="Gait_training" value="1" ngModel>
+                          <label for="Gait_training">
+                            Gait training
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_9" id="Passive_exs" value="1" ngModel>
+                          <label for="Passive_exs">
+                            Passive exs.
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-left">
+                          <input type="checkbox" name="tt_sta_10" id="Transfer_training" value="1" ngModel>
+                          <label for="Transfer_training">
+                            Transfer training
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="text-left">
+                <b>F/U PT.</b>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta_end" id="end1" value="1" ngModel>
+                <label for="end1">
+                  ไม่นัด
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta_end" id="end2" value="2" ngModel>
+                <label for="end2">
+                  นัดวันที่
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="date" name="date_appoint" ngModel>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta_end" id="end3" value="3" ngModel>
+                <label for="end3">
+                  ส่งต่อไป รพ.
+                </label>
+              </div>
+              <div class="col-md-2">
+                <input type="text" name="etc_hospital" ngModel>
+              </div>
+              <div class="text-left">
+                รักษาทางอื่น
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta_end" id="end4" value="4" ngModel>
+                <label for="end4">
+                  แผนไทย
+                </label>
+              </div>
+              <div class="text-left">
+                <input type="radio" name="sta_end" id="end5" value="5" ngModel>
+                <label for="end5">
+                  ฝังเข็ม
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-primary" type="submit">บันทึก</button>
+              </div>
+            </div>
+          </div>
+          <input type="text" [(ngModel)]="mm" name="mm" >
+          <input type="text" [(ngModel)]="id_ph" name="id_ph" >
+        </form>
+      </div>
+    </span>
+    <span [className]='page3'>
+      <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+        <ul class="nav navbar-nav">
+          <li class="nav-item homeMenu" style="vertical-align:top;">
+            <a class=" topMenu1 noSpace1" (click)="my_page1()">
+              <div class="txt_manu_l">
+                ข้อมูลผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1" (click)="my_page2()">
+              <div class="txt_manu_l">
+                แบบประเมินผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1 activel" (click)="my_page3()">
+              <div class="txt_manu_l">
+                Medication
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page4()">
+              <div class="txt_manu_l">
+                หัตถการ
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page5()">
+              <div class="txt_manu_l">
+                การนัดหมาย
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              รายการยา
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <select class="form-control">
+                    <option>กรุณาเลือก</option>
+                  </select>
+                </div>
+                <div class="text-left">จำนวน</div>
+                <div class="col-md-2">
+                  <input type="text" class="form-control">
+                </div>
+                <div class="text-left">หน่วย</div>
+                <div class="col-md-3">
+                  <select class="form-control">
+                    <option>กรุณาเลือก</option>
+                  </select>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              แพ้ยา
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+
+
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+    <span [className]='page4'>
+      <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+        <ul class="nav navbar-nav">
+          <li class="nav-item homeMenu" style="vertical-align:top;">
+            <a class=" topMenu1 noSpace1" (click)="my_page1()">
+              <div class="txt_manu_l">
+                ข้อมูลผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1" (click)="my_page2()">
+              <div class="txt_manu_l">
+                แบบประเมินผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page3()">
+              <div class="txt_manu_l">
+                Medication
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1 activel" (click)="my_page4()">
+              <div class="txt_manu_l">
+                หัตถการ
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page5()">
+              <div class="txt_manu_l">
+                การนัดหมาย
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          หัตถการ
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="text-left">ชื่อหัตถการ</div>
+            <div class="col-md-4">
+              <input type="text" class="form-control">
+            </div>
+            <div class="text-left">แพทย์ผู้ทำ</div>
+            <div class="col-md-4">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-left">เวลาเริ่ม</div>
+            <div class="col-md-2">
+              <input type="time" class="form-control">
+            </div>
+            <div class="text-left">เวลาสิ้นสุด</div>
+            <div class="col-md-2">
+              <input type="time" class="form-control">
+            </div>
+            <div class="text-left">ICD9</div>
+            <div class="col-md-2">
+              <input type="text" class="form-control">
+            </div>
+            <div class="text-left">ค่าบริการ</div>
+            <div class="col-md-2">
+              <input type="number" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+    <span [className]='page5'>
+      <div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+        <ul class="nav navbar-nav">
+          <li class="nav-item homeMenu" style="vertical-align:top;">
+            <a class=" topMenu1 noSpace1" (click)="my_page1()">
+              <div class="txt_manu_l">
+                ข้อมูลผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1" (click)="my_page2()">
+              <div class="txt_manu_l">
+                แบบประเมินผู้ป่วย
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page3()">
+              <div class="txt_manu_l">
+                Medication
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1" (click)="my_page4()">
+              <div class="txt_manu_l">
+                หัตถการ
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item clinicMenu1">
+            <a class="topMenu1 noSpace1 activel" (click)="my_page5()">
+              <div class="txt_manu_l">
+                การนัดหมาย
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          การนัดหมาย
+        </div>
+        <div class="card-body">
+        </div>
+      </div>
+    </span>
+  </div>
+</span>

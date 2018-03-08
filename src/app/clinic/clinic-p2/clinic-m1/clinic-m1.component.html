@@ -33,14 +33,14 @@
         </div>
       </form>
       <div class="text-left" style="padding-left: 0px; padding-right: 0px;">แสดง</div>
-      <div class="col-lg-1" style="width: 100px;"> 
-      <select class="form-control" [(ngModel)]="Per_Page"  name="num_page" style="position: relative; top: -7px;" (change)="num_page(Per_Page)">
-        <option value="5">5</option>
-        <option value="10">10</option>
-      </select> 
-    </div>
-    <div class="text-left" style="padding-left: 0px; padding-right: 0px;">รายการ</div>
-      
+      <div class="col-lg-1" style="width: 100px;">
+        <select class="form-control" [(ngModel)]="Per_Page" name="num_page" style="position: relative; top: -7px;" (change)="num_page(Per_Page)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="text-left" style="padding-left: 0px; padding-right: 0px;">รายการ</div>
+
       <table class="table table-striped table-bordered table-hover" id="myTable">
         <thead>
           <tr>
@@ -67,7 +67,7 @@
         <div class="btn-group mr-2" role="group" aria-label="First group">
           <button *ngFor="let i of count_ar; let n = index" type="button" class="btn btn-secondary" (click)='selete_page(n+1);'>{{n+1}}</button>
         </div>
-      </div> 
+      </div>
     </div>
   </span>
 
@@ -281,10 +281,6 @@
         </div>
 
       </span>
-
-
-
-
     </div>
 
   </span>
@@ -310,6 +306,13 @@
             <a class="topMenu1 noSpace1" (click)="pageb()">
               <div class="txt_manu_l">
                 ประวัติการมารับบริการ
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1" (click)="pageb()">
+              <div class="txt_manu_l">
+                การนัดหมาย
               </div>
             </a>
           </li>
@@ -693,6 +696,13 @@
             <a class="topMenu1 noSpace1 activel" (click)="pageb()">
               <div class="txt_manu_l">
                 ประวัติการมารับบริการ
+              </div>
+            </a>
+          </li>
+          <li class="nav-item clinicMenu">
+            <a class="topMenu1 noSpace1 activel" (click)="pageb()">
+              <div class="txt_manu_l">
+                การนัดหมาย
               </div>
             </a>
           </li>

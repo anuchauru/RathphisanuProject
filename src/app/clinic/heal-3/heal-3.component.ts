@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ClinicserviceService } from '../clinicservice.service';
 
 @Component({
-  selector: 'app-clinic-p3',
-  templateUrl: './clinic-p3.component.html',
-  styleUrls: ['./clinic-p3.component.css'],
+  selector: 'app-heal-3',
+  templateUrl: './heal-3.component.html',
+  styleUrls: ['./heal-3.component.css'],
   providers: [ClinicserviceService]
 })
-export class ClinicP3Component implements OnInit {
+export class Heal3Component implements OnInit {
   data_ph: any;
   if_text: any;
   id_text: any;
@@ -17,7 +17,11 @@ export class ClinicP3Component implements OnInit {
   page3: any;
   page4: any;
   page5: any;
-  constructor( private clsv: ClinicserviceService ) { 
+  // insert
+  mm: any;
+  id_ph: any;
+  data: any;
+  constructor( private clsv: ClinicserviceService ) {
     this.clsv.get_tb_send_check().subscribe(
       (txtdata) => this.data_ph = txtdata,
       (error) => alert(error),
@@ -28,6 +32,7 @@ export class ClinicP3Component implements OnInit {
   }
 
   ngOnInit() {
+    this.mm = 'insert';
     this.if_text = 'table';
     this.page1 = 'show';
     this.page2 = 'hide';
@@ -36,6 +41,7 @@ export class ClinicP3Component implements OnInit {
     this.page5 = 'hide';
   }
   myPatient(id: any) {
+    this.id_ph = id;
     this.if_text = 'form';
     this.id_text = {
       id_screening: id,
@@ -85,5 +91,14 @@ export class ClinicP3Component implements OnInit {
     this.page4 = 'hide';
     this.page5 = 'show';
   }
-
+   // เพิ่มข้อมูลแบบประเมินผู้ป่วยระบบกระดูกกล้ามเนื้อ และข้อ
+   insert_heal_3(data: any) {
+    this.clsv.get_heal_3(data).subscribe(
+      (txtdata) => this.data = txtdata,
+      (e) => alert(e),
+      () => {
+        console.log(this.data);
+      }
+    );
+  }
 }

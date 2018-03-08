@@ -59,6 +59,12 @@ export class ClinicserviceService {
   // ห้องตรวจ
   query_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/clinic/query_tb_screening.php';
 
+  // ห้องตรวจ1
+  urlAPi_heal_1 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_1.php';
+  // ห้องตรวจ2
+  urlAPi_heal_2 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_2.php';
+  // ห้องตรวจ3
+  urlAPi_heal_3 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_3.php';
   constructor(private http: HttpClient) { }
 
   // คิวรี่
@@ -146,6 +152,18 @@ export class ClinicserviceService {
   // ห้องตรวจ
   get_tb_screening_cli(): Observable<any> {
     return this.http.get<any>(this.query_tb_screening);
+  }
+  // ห้องตรวจ1
+  get_heal_1(id_text: any): Observable<any> {
+    return this.http.post<any>(this.urlAPi_heal_1, id_text);
+  }
+  // ห้องตรวจ2
+  get_heal_2(id_text: any): Observable<any> {
+    return this.http.post<any>(this.urlAPi_heal_2, id_text);
+  }
+  // ห้องตรวจ3
+  get_heal_3(id_text: any): Observable<any> {
+    return this.http.post<any>(this.urlAPi_heal_3, id_text);
   }
   // ห้องยา
   get_tb_screening_med(): Observable<any> {

@@ -108,5 +108,26 @@ li .a:hover,.active {
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
-}
+}.textAlignVer{
+    display:block;
+    filter: flipv fliph;
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg); 
+    transform: rotate(-90deg); 
+    position:relative;
+    width:20px;
+    white-space:nowrap;
+    font-size:12px;
+    margin-bottom:10px;
+    }
+    .width_5{
+        width: 5%;
+        text-align: center;
+    }.label_table{
+        width: 35px;
+        margin-bottom: 0px;
+        height: 35px;
+    }.input_table{
+        margin-left: 6px;
+    }
 

@@ -97,7 +97,6 @@ export class ClinicM2Component implements OnInit {
       },
       (error) => {
         console.log(error);
-          
       },
       () => {
         console.log('Come back');
@@ -181,7 +180,7 @@ export class ClinicM2Component implements OnInit {
     // this.str = txform;
     this.str = {
       id_screening: this.id_screening,
-      mm: this.mm 
+      mm: this.mm
      };
 
     this.clsv.postScreening(txform).subscribe(

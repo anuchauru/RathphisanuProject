@@ -24,8 +24,7 @@ import { ClinicP1Component } from './clinic/clinic-p1/clinic-p1.component';
 import { ClinicP2Component } from './clinic/clinic-p2/clinic-p2.component';
 import { ClinicM1Component } from './clinic/clinic-p2/clinic-m1/clinic-m1.component';
 import { ClinicM2Component } from './clinic/clinic-p2/clinic-m2/clinic-m2.component';
-import { ClinicM3Component } from './clinic/clinic-p2/clinic-m3/clinic-m3.component';
-import { ClinicP3Component } from './clinic/clinic-p3/clinic-p3.component';
+import { ClinicP3Component } from './clinic/clinic-p3/clinic-p3.component'; // ไม่ได้ใช้
 import { ClinicP4Component } from './clinic/clinic-p4/clinic-p4.component';
 import { ClinicP5Component } from './clinic/clinic-p5/clinic-p5.component';
 import { ClinicP6Component } from './clinic/clinic-p6/clinic-p6.component';
@@ -55,6 +54,10 @@ import { MyMoneyP1Component } from './my-money/my-money-p1/my-money-p1.component
 import { MyMoneyP2Component } from './my-money/my-money-p2/my-money-p2.component';
 import { MyMoneyP3Component } from './my-money/my-money-p3/my-money-p3.component';
 import { LoginUserComponent } from './login-user/login-user.component';
+
+import { Heal1Component } from './clinic/heal-1/heal-1.component';
+import { Heal2Component } from './clinic/heal-2/heal-2.component';
+import { Heal3Component } from './clinic/heal-3/heal-3.component';
 
 // const token: String = 'testtoken';
 
@@ -100,7 +103,9 @@ import { LoginUserComponent } from './login-user/login-user.component';
     LoginUserComponent,
     ClinicM1Component,
     ClinicM2Component,
-    ClinicM3Component
+    Heal1Component,
+    Heal2Component,
+    Heal3Component
   ],
   imports: [
     // Import modules here
@@ -109,6 +114,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
     FormsModule,
     RouterModule.forRoot([
       // Define Path URL
+      { path: 'home', component: ClinicComponent },
       { path: '', component: ClinicComponent },
       {
         path: 'clinic', component: ClinicComponent,
@@ -119,14 +125,14 @@ import { LoginUserComponent } from './login-user/login-user.component';
             children: [
               { path: 't1', component: ClinicM1Component, outlet: 'c3' },
               { path: 't2', component: ClinicM2Component, outlet: 'c3' },
-              { path: 't3', component: ClinicM3Component, outlet: 'c3' },
-              { path: 't4', component: ClinicM1Component, outlet: 'c3' },
-              { path: '', component: ClinicComponent },
+              { path: '', component: ClinicM1Component, outlet: 'c3' },
               { path: '**', component: ClinicM1Component, outlet: 'c3' }
               // {  path: '**', redirectTo: '/home', pathMatch: 'full' }
             ]
           },
-          { path: 'c3', component: ClinicP3Component, outlet: 'c2' },
+          { path: 'r1', component: Heal1Component, outlet: 'c2' },
+          { path: 'r2', component: Heal2Component, outlet: 'c2' },
+          { path: 'r3', component: Heal3Component, outlet: 'c2' },
           { path: 'c4', component: ClinicP4Component, outlet: 'c2' },
           { path: 'c5', component: ClinicP5Component, outlet: 'c2' },
           { path: 'c6', component: ClinicP6Component, outlet: 'c2' },
