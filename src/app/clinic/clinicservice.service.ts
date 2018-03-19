@@ -7,7 +7,7 @@ import { history, tb_screening } from './clinic.model';
 @Injectable()
 export class ClinicserviceService {
   // xampp
-  // urlAPi = 'http://localhost/otom/query/ph_query.php';
+  
   // urlAPi_pername = 'http://localhost/otom/query/query_pername.php';
   // urlAPi_province = 'http://localhost/otom/query/query_province.php';
   // urlAPi_room = 'http://localhost/otom/query/query_rooms.php';
@@ -31,7 +31,6 @@ export class ClinicserviceService {
   // ph_query_num = 'http://localhost/otom/query/ph_query_num.php';
 
   // host
-  urlAPi = 'http://202.29.52.61/~hosdb/otom/query/ph_query.php';
   urlAPi_pername = 'http://202.29.52.61/~hosdb/otom/query/query_pername.php';
   urlAPi_province = 'http://202.29.52.61/~hosdb/otom/query/query_province.php';
   urlAPi_room = 'http://202.29.52.61/~hosdb/otom/query/query_rooms.php';
@@ -59,18 +58,21 @@ export class ClinicserviceService {
   // ห้องตรวจ
   query_tb_screening = 'http://202.29.52.61/~hosdb/otom/query/clinic/query_tb_screening.php';
 
+  // ข้อมูลผู้ป่วย
+  // urlAPi = 'http://localhost/otom/query/clinic/ph_query.php';
+  urlAPi = 'http://202.29.52.61/~hosdb/otom/query/clinic/ph_query.php';
   // ห้องตรวจ1
+  // urlAPi_heal_1 = 'http://localhost/otom/query/clinic/heal_1.php';
   urlAPi_heal_1 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_1.php';
   // ห้องตรวจ2
-  urlAPi_heal_2 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_2.php';
+  urlAPi_heal_2 = 'http://localhost/otom/query/clinic/heal_2.php';
+  // urlAPi_heal_2 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_2.php';
   // ห้องตรวจ3
-  urlAPi_heal_3 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_3.php';
+  urlAPi_heal_3 = 'http://localhost/otom/query/clinic/heal_3.php';
+  // urlAPi_heal_3 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_3.php';
   constructor(private http: HttpClient) { }
 
   // คิวรี่
-  getph(page: any): Observable<history[]> {
-    return this.http.post<history[]>(this.urlAPi, page);
-  }
   getph_page(id: any): Observable<history[]> {
     return this.http.post<history[]>(this.urlAPi, id);
   }
@@ -153,6 +155,11 @@ export class ClinicserviceService {
   get_tb_screening_cli(): Observable<any> {
     return this.http.get<any>(this.query_tb_screening);
   }
+
+  // ข้อมูลผู้ป่วย
+  getph(page: any): Observable<history[]> {
+    return this.http.post<history[]>(this.urlAPi, page);
+  }
   // ห้องตรวจ1
   get_heal_1(id_text: any): Observable<any> {
     return this.http.post<any>(this.urlAPi_heal_1, id_text);
@@ -165,6 +172,7 @@ export class ClinicserviceService {
   get_heal_3(id_text: any): Observable<any> {
     return this.http.post<any>(this.urlAPi_heal_3, id_text);
   }
+
   // ห้องยา
   get_tb_screening_med(): Observable<any> {
     return this.http.get<any>(this.query_tb_screening);

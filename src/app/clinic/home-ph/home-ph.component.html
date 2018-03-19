@@ -1,0 +1,48 @@
+<div class="collapse navbar-toggleable-sm" id="navbar" style="width:100%;">
+    <ul class="nav navbar-nav noSpace">
+        <li class="nav-item homeMenu">
+            <a class=" topMenu topMenu-bg noSpace" [routerLink]="[{outlets:{'c3':['page1', id]}}]" [routerLinkActive]="['homeMenuactive']">
+                <div class="img_u">
+                    <img src='./assets/images/star-small.png'>
+                </div>
+                <div class="txt_manu_l">
+                    ข้อมูลผู้ป่วย
+                </div>
+            </a>
+        </li>
+        <li class="nav-item clinicMenu">
+            <a class="topMenu topMenu-bg noSpace" [routerLink]="[{outlets:{'c3':['page2', id]}}]" [routerLinkActive]="['clinicMenuactive']">
+                <div class="img_u">
+                    <img src='./assets/images/buildings-big.png'>
+                </div>
+                <div class="txt_manu_l">
+                    แบบประเมิน(1)
+                </div>
+            </a>
+        </li>
+        <li class="nav-item productMenu">
+            <a class="topMenu topMenu-bg noSpace" [routerLink]="[{outlets:{'c3':['page3', id]}}]" [routerLinkActive]="['productMenuactive']">
+                <div class="img_u">
+                    <img src='./assets/images/buildings-big.png'>
+                </div>
+                <div class="txt_manu_l">
+                    แบบประเมิน(2)
+                </div>
+            </a>
+        </li>
+        <li class="nav-item serviceMenu">
+            <a class="topMenu noSpace topMenu-bg" [routerLink]="[{outlets:{'c3':['page4', id]}}]" [routerLinkActive]="['serviceMenuactive']">
+                <div class="img_u">
+                    <img src='./assets/images/box-big.png'>
+                </div>
+                <div class="txt_manu_l">
+                    แบบประเมิน(3)
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<router-outlet name='c3'></router-outlet>
+
+<button class="btn btn-outline-primary" [routerLink]="['../']" type="button">ย้อนกลับ</button>

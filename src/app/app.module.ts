@@ -59,6 +59,12 @@ import { Heal1Component } from './clinic/heal-1/heal-1.component';
 import { Heal2Component } from './clinic/heal-2/heal-2.component';
 import { Heal3Component } from './clinic/heal-3/heal-3.component';
 
+import { HomePhComponent } from './clinic/home-ph/home-ph.component';
+import { HealC1Component } from './clinic/home-ph/heal-c1/heal-c1.component';
+import { HealC2Component } from './clinic/home-ph/heal-c2/heal-c2.component';
+import { HealC3Component } from './clinic/home-ph/heal-c3/heal-c3.component';
+import { DataPhComponent } from './clinic/home-ph/data-ph/data-ph.component';
+
 // const token: String = 'testtoken';
 
 
@@ -105,7 +111,13 @@ import { Heal3Component } from './clinic/heal-3/heal-3.component';
     ClinicM2Component,
     Heal1Component,
     Heal2Component,
-    Heal3Component
+    Heal3Component,
+    //  new
+    HomePhComponent,
+    HealC1Component,
+    HealC2Component,
+    HealC3Component,
+    DataPhComponent
   ],
   imports: [
     // Import modules here
@@ -119,7 +131,16 @@ import { Heal3Component } from './clinic/heal-3/heal-3.component';
       {
         path: 'clinic', component: ClinicComponent,
         children: [
-          { path: 'c1', component: ClinicP1Component, outlet: 'c2' },
+          { path: 'HN', component: ClinicP1Component, outlet: 'c2' },
+          { path: 'HN/:id', component: HomePhComponent, outlet: 'c2',
+            children: [
+              { path: '', component: DataPhComponent, outlet: 'c3'},
+              { path: 'page1/:id', component: DataPhComponent, outlet: 'c3'},
+              { path: 'page2/:id', component: HealC1Component, outlet: 'c3'},
+              { path: 'page3/:id', component: HealC2Component, outlet: 'c3'},
+              { path: 'page4/:id', component: HealC3Component, outlet: 'c3'}
+            ]
+          },
           {
             path: 'c2', component: ClinicP2Component, outlet: 'c2',
             children: [
