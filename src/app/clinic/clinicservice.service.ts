@@ -65,11 +65,11 @@ export class ClinicserviceService {
   // urlAPi_heal_1 = 'http://localhost/otom/query/clinic/heal_1.php';
   urlAPi_heal_1 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_1.php';
   // ห้องตรวจ2
-  urlAPi_heal_2 = 'http://localhost/otom/query/clinic/heal_2.php';
-  // urlAPi_heal_2 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_2.php';
+  // urlAPi_heal_2 = 'http://localhost/otom/query/clinic/heal_2.php';
+  urlAPi_heal_2 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_2.php';
   // ห้องตรวจ3
-  urlAPi_heal_3 = 'http://localhost/otom/query/clinic/heal_3.php';
-  // urlAPi_heal_3 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_3.php';
+  // urlAPi_heal_3 = 'http://localhost/otom/query/clinic/heal_3.php';
+  urlAPi_heal_3 = 'http://202.29.52.61/~hosdb/otom/query/clinic/heal_3.php';
   constructor(private http: HttpClient) { }
 
   // คิวรี่
